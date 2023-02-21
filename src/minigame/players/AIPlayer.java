@@ -5,7 +5,7 @@ package minigame.players;
  */
 public class AIPlayer implements Player{
     @Override
-    public void step() {
+    public void step(int x, int y) {
 
     }
 }

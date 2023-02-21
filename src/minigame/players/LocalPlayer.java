@@ -5,7 +5,7 @@ package minigame.players;
  */
 public class LocalPlayer implements Player{
     @Override
-    public void step() {
+    public void step(int x, int y) {
 
     }
 }

@@ -5,5 +5,8 @@ package minigame.players;
  * 后期如果多人对战的话，接口方便维护
  */
 public interface Player {
-    void step();
+    /**
+     * 下一步棋
+     */
+    void step(int x, int y);
 }
