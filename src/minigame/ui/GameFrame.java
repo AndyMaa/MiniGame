@@ -7,11 +7,15 @@ import javax.swing.*;
  * 自己实现
  */
 public class GameFrame extends JFrame {
+    public static boolean canWork=false;
+
     public GameFrame(String name){
         super(name);
-        setSize(500, 500);
+        setSize(900, 400);
         setResizable(true);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
+
+        getContentPane().add(new GamePane());
     }
 }
