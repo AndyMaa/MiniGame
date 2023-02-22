@@ -1,5 +1,7 @@
 package minigame.core;
 
+import minigame.ui.ChessUI;
+
 /**
  * 棋盘
  * 这不是一个swing控件，只是一个虚拟的棋盘
@@ -11,16 +13,25 @@ public class Chess {
     public static final int YOU=2;
 
     /**
-     * 储存期盼数据
+     * 储存期棋盘数据
      */
-    public final byte[][] data;
-    public final int width;
-    public final int height;
+    private final byte[][] data;
+    /**
+     * 棋盘大小，以格为单位
+     */
+    public final int size;
+    /**
+     * 一个ChessUI的指针，当数据变化时调用repaint
+     * 在ChessUI.setChess中会自动绑定
+     */
+    private ChessUI ui;
+    public void setUI(ChessUI ui){
+        this.ui=ui;
+    }
 
-    public Chess(int width,int height){
-        data=new byte[width][height];
-        this.width=width;
-        this.height=height;
+    public Chess(int size){
+        data=new byte[size][size];
+        this.size =size;
     }
 
     /**
@@ -30,5 +41,16 @@ public class Chess {
      */
     public int get(int x,int y){
         return data[x][y];
+    }
+    public byte[][] getData(){
+        return data;
+    }
+
+    /**
+     * 设置某个点的状态
+     */
+    public void set(int x,int y,int state){
+        data[x][y]= (byte) state;
+        ui.repaint();
     }
 }
