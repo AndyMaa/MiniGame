@@ -9,6 +9,6 @@ import javax.swing.*;
 public class GamePane extends JPanel {
     public GamePane(){
         super();
-        setVisible(true);
+
     }
 }
