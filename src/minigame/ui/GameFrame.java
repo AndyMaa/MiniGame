@@ -17,6 +17,7 @@ public class GameFrame extends JFrame {
         setSize(600, 630);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         Chess chess=new Chess(10);
-        getContentPane().add(new ChessUI(chess), BorderLayout.CENTER);
+        if (canWork) getContentPane().add(new ChessUI(chess), BorderLayout.CENTER);
+        else getContentPane().add(new WelcomePane(), BorderLayout.CENTER);
     }
 }
