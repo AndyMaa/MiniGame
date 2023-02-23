@@ -9,4 +9,5 @@ public interface Player {
      * 下一步棋
      */
     void step(int x, int y);
+//    void join();
 }

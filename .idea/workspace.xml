@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0bea6f4a-c1e1-467d-adfb-7b7970f54f27" name="Changes" comment="" />
+    <list id="cbd49729-8311-4fa1-a728-d9d948b11005" name="Changes by YKJ6" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -17,6 +18,15 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="LineStatusTrackerManager">
+    <file path="$PROJECT_DIR$/src/minigame/ui/GameFrame.java">
+      <ranges>
+        <range start1="12" end1="13" start2="12" end2="13" changelist="cbd49729-8311-4fa1-a728-d9d948b11005" />
+        <range start1="17" end1="17" start2="17" end2="18" changelist="0bea6f4a-c1e1-467d-adfb-7b7970f54f27" />
+        <range start1="19" end1="20" start2="20" end2="22" changelist="0bea6f4a-c1e1-467d-adfb-7b7970f54f27" />
+      </ranges>
+    </file>
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -62,6 +72,7 @@
       <workItem from="1677027217908" duration="1077000" />
       <workItem from="1677061088984" duration="1434000" />
       <workItem from="1677113393953" duration="1637000" />
+      <workItem from="1677129055834" duration="1276000" />
     </task>
     <servers />
   </component>

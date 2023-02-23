@@ -9,8 +9,6 @@ import minigame.ui.ChessUI;
  */
 public class Chess {
     public static final int NONE=0;
-    public static final int MY=1;
-    public static final int YOU=2;
 
     /**
      * 储存期棋盘数据
@@ -27,11 +25,14 @@ public class Chess {
     private ChessUI ui;
     public void setUI(ChessUI ui){
         this.ui=ui;
+
     }
 
     public Chess(int size){
         data=new byte[size][size];
         this.size =size;
+        data[size/2-1][size/2-1]=data[size/2][size/2]=1;
+        data[size/2-1][size/2]=data[size/2][size/2-1]=2;
     }
 
     /**

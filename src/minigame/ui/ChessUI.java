@@ -57,6 +57,8 @@ public class ChessUI extends JPanel implements ComponentListener, MouseMotionLis
     }
 
     private static final Color highLight=new Color(54, 227, 241, 77);
+    private static final Color purple=new Color(133, 56, 220);
+    private static final Color blue=new Color(33, 60, 238);
     @Override
     public void paint(Graphics g) {
         super.paint(g);
@@ -69,15 +71,23 @@ public class ChessUI extends JPanel implements ComponentListener, MouseMotionLis
         }
         byte[][] data=chess.getData();
         //渲染棋子
+        int current;
         for (int i=0;i<chess.size;i++){
             for (int j=0;j<chess.size;j++){
-                g.drawString(String.valueOf(data[i][j]),rX+i*blockSize,rY+j*blockSize);
+                current=data[i][j];
+//                g.drawString(String.valueOf(current),rX+i*blockSize,rY+j*blockSize);
+                if (current!=0){
+                    if (current==1) g.setColor(purple);
+                    else if (current==2) g.setColor(blue);
+                    g.fillOval(rX+i*blockSize+5,rY+j*blockSize+5,blockSize-10,blockSize-10);
+                    g.setColor(Color.black);
+                }
             }
         }
         g.setColor(highLight);
-        if (lastX!=-1){
-            g.fillRect(rX+lastX*blockSize,rY+lastY*blockSize,blockSize,blockSize);
-        }
+
+        if (lastX==-1||lastY==-1) return;
+        g.fillRect(rX+lastX*blockSize,rY+lastY*blockSize,blockSize,blockSize);
     }
 
     /**
