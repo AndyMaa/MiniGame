@@ -56,7 +56,7 @@ public class ChessUI extends JPanel implements ComponentListener, MouseMotionLis
         blockSize=rSize/chess.size;
     }
 
-    private static final Color highLight=new Color(54, 227, 241, 77);
+    private static final Color highLight=new Color(54, 227, 241, 120);
     private static final Color purple=new Color(133, 56, 220);
     private static final Color blue=new Color(33, 60, 238);
     @Override
@@ -75,7 +75,6 @@ public class ChessUI extends JPanel implements ComponentListener, MouseMotionLis
         for (int i=0;i<chess.size;i++){
             for (int j=0;j<chess.size;j++){
                 current=data[i][j];
-//                g.drawString(String.valueOf(current),rX+i*blockSize,rY+j*blockSize);
                 if (current!=0){
                     if (current==1) g.setColor(purple);
                     else if (current==2) g.setColor(blue);
@@ -85,7 +84,6 @@ public class ChessUI extends JPanel implements ComponentListener, MouseMotionLis
             }
         }
         g.setColor(highLight);
-
         if (lastX==-1||lastY==-1) return;
         g.fillRect(rX+lastX*blockSize,rY+lastY*blockSize,blockSize,blockSize);
     }
