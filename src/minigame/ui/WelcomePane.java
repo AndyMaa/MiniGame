@@ -1,5 +1,7 @@
 package minigame.ui;
 
+import minigame.core.event.listeners.StartListener;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -26,5 +28,9 @@ public class WelcomePane extends JPanel {
         add(AI, BorderLayout.CENTER);
         add(NATIVE);
         add(NETWORK);
+
+        AI.addActionListener(new StartListener());
+        NATIVE.addActionListener(new StartListener());
+        NETWORK.addActionListener(new StartListener());
     }
 }

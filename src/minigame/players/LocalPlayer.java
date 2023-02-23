@@ -20,4 +20,9 @@ public class LocalPlayer implements Player{
     public void setId(int id) {
 
     }
+
+    @Override
+    public int getId() {
+        return 0;
+    }
 }

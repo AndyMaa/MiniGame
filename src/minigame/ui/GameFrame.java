@@ -18,7 +18,13 @@ public class GameFrame extends JFrame {
         setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         Chess chess=new Chess(10);
-        if (canWork) getContentPane().add(new ChessUI(chess), BorderLayout.CENTER);
-        else getContentPane().add(new WelcomePane(), BorderLayout.CENTER);
+        if (canWork) {
+            getContentPane().add(new ChessUI(chess), BorderLayout.CENTER);
+            repaint();
+        }
+        else {
+            getContentPane().add(new WelcomePane(), BorderLayout.CENTER);
+            repaint();
+        }
     }
 }
