@@ -1,5 +1,6 @@
 package minigame.core.event.listeners;
 
+import minigame.core.Game;
 import minigame.ui.GameFrame;
 
 import java.awt.event.ActionEvent;
@@ -12,6 +13,6 @@ import java.awt.event.ActionListener;
 public class StartListener implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
-        GameFrame.canWork=true;
+        GameFrame.instance.setMode("game");
     }
 }
