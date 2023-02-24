@@ -6,6 +6,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import java.util.HashMap;
 import java.util.LinkedList;
 
 /**
@@ -13,10 +14,11 @@ import java.util.LinkedList;
  * 自己实现
  */
 public class GameFrame extends JFrame {
-    //public static boolean canWork=false;
     public static GameFrame instance;
-    public static JPanel gameC;
-    public static JPanel welcomeC;
+    /**
+     * 储存mode和对应的组件
+     */
+    public final HashMap<String,JPanel> modes=new HashMap<>();
 
     public GameFrame(String name){
         super(name);
@@ -25,33 +27,22 @@ public class GameFrame extends JFrame {
         setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         Chess chess=new Chess(10);
-        gameC=new ChessUI(chess);
-        welcomeC=new WelcomePane();
-//        getContentPane().add(welcomeC,BorderLayout.CENTER);
-//        getContentPane().add(welcomeC,BorderLayout.CENTER);
+        modes.put("game",new ChessUI(chess));
+        modes.put("welcome",new WelcomePane());
         setMode("welcome");
     }
 
     /**
-     * 有bug
-     * @param mode
+     * 测试过了，能用了
+     * 眼保健操改的，快叫我大聪明
      */
     public void setMode(String mode){
-        switch (mode){
-            case "welcome":
-                System.out.println("we");
-                getContentPane().removeAll();
-//                removeAll();
-                getContentPane().add(welcomeC,BorderLayout.CENTER);
-                break;
-            case "game":
-                System.out.println("game");
-                getContentPane().removeAll();
-//                removeAll();
-                getContentPane().add(gameC,BorderLayout.CENTER);
-                break;
+        if (modes.containsKey(mode)){
+            getContentPane().removeAll();
+            getContentPane().add(modes.get(mode),BorderLayout.CENTER);
+            validate();
+        }else {
+            System.out.println("未知的mode?  "+mode);
         }
-        repaint();
-//        System.out.println(gameC.getBounds());
     }
 }
