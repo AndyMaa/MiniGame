@@ -1,4 +1,4 @@
-package minigame.players;
+package minigame.core.players;
 
 /**
  * 远程玩家的本地实例

@@ -1,25 +1,29 @@
 package minigame.ui;
 
 import minigame.core.Chess;
+import minigame.core.Game;
+import minigame.ui.buttons.More;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ComponentEvent;
-import java.awt.event.ComponentListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseMotionListener;
+import java.awt.event.*;
 
 /**
  * 渲染一个Chess
  */
-public class ChessUI extends JPanel implements ComponentListener, MouseMotionListener {
+public class ChessUI extends JPanel implements ComponentListener, MouseMotionListener, MouseListener {
+    public static ChessUI instance;
     private Chess chess;
-    public ChessUI(Chess chess){
+    public ChessUI(){
         super();
-        this.chess=chess;
-        chess.setUI(this);
+        instance=this;
+        //添加按钮
+        add(More.EXIT) ;
+        add(More.REGRET);
+
         addComponentListener(this);
         addMouseMotionListener(this);
+        addMouseListener(this);
     }
     public void setChess(Chess chess){
         this.chess=chess;
@@ -75,6 +79,7 @@ public class ChessUI extends JPanel implements ComponentListener, MouseMotionLis
         for (int i=0;i<chess.size;i++){
             for (int j=0;j<chess.size;j++){
                 current=data[i][j];
+                g.drawString(String.valueOf(chess.isValid(i,j,Game.thePlayer.getId())),rX+i*blockSize,rY+j*blockSize);
                 if (current!=0){
                     if (current==1) g.setColor(purple);
                     else if (current==2) g.setColor(blue);
@@ -104,6 +109,31 @@ public class ChessUI extends JPanel implements ComponentListener, MouseMotionLis
         lastX=newX>=chess.size||newX<0?-1:newX;
         lastY=newY>=chess.size||newY<0?-1:newY;
         repaint();
+    }
+
+    @Override
+    public void mouseClicked(MouseEvent e) {
+        Game.thePlayer.step(toBlockX(e.getX()),toBlockY(e.getY()));
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+
     }
 
     @Override

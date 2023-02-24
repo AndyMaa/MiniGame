@@ -1,4 +1,4 @@
-package minigame.players;
+package minigame.core.players;
 
 import minigame.core.server.Server;
 

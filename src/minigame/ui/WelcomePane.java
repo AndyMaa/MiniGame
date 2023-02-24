@@ -32,5 +32,6 @@ public class WelcomePane extends JPanel {
         AI.addActionListener(new StartListener());
         NATIVE.addActionListener(new StartListener());
         NETWORK.addActionListener(new StartListener());
+
     }
 }

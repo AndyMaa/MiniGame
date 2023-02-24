@@ -1,16 +1,28 @@
 package minigame.core.server;
 
 import minigame.core.Chess;
-import minigame.players.Player;
+import minigame.core.Game;
+import minigame.core.players.LocalPlayer;
+import minigame.core.players.Player;
 
 public class LocalServer implements Server{
     private final Chess chess;
     private Player p1;
     private Player p2;
+
+    /**
+     * 是否两个都是本地玩家
+     */
+    private boolean playerOnly=false;
+    /**
+     * 轮到哪个玩家下，值为id
+     */
+    private int turn=1;
     public LocalServer(int size){
         chess=new Chess(size);
     }
 
+    @Override
     public Chess getChess() {
         return chess;
     }
@@ -29,10 +41,21 @@ public class LocalServer implements Server{
             p2=player;
             //第二名玩家强制分配id
             player.setId(3-p1.getId());
+            playerOnly=p1 instanceof LocalPlayer&&p2 instanceof LocalPlayer;
         }
     }
-    //    @Override
-//    public void start() {
-//
-//    }
+
+    @Override
+    public boolean canStepAt(Player player,int x, int y) {
+        return player.getId()==turn&&chess.isValid(x,y,turn);
+    }
+
+    @Override
+    public void step(Player player,int x, int y) {
+        chess.set(x,y,player.getId());
+        if (++turn==3) turn=1;
+        if (playerOnly){
+            Game.thePlayer=player==p1?p2:p1;
+        }
+    }
 }

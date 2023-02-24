@@ -1,6 +1,4 @@
-package minigame.players;
-
-import minigame.core.server.Server;
+package minigame.core.players;
 
 /**
  * 电脑玩家
