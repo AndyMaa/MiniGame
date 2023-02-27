@@ -56,6 +56,14 @@ public class LocalServer implements Server{
         if (++turn==3) turn=1;
         if (playerOnly){
             Game.thePlayer=player==p1?p2:p1;
+        }else {
+            if (Game.thePlayer==player){
+                if (player==p1){
+                    p2.step(0,0);
+                }else {
+                    p1.step(0,0);
+                }
+            }
         }
     }
 }

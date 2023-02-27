@@ -9,5 +9,6 @@ public class ExitListener implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         GameFrame.instance.setMode("welcome");
+        //GameFrame.instance.setVisible(false);
     }
 }

@@ -7,7 +7,7 @@ import minigame.ui.ChessUI;
  * 这不是一个swing控件，只是一个虚拟的棋盘
  * 渲染模块负责将其可视化
  */
-public class Chess {
+public final class Chess {
     /**
      * 储存期棋盘数据
      */
@@ -49,13 +49,16 @@ public class Chess {
      */
     public void set(int x,int y,int id){
         data[x][y]= (byte) id;
-        int num;
+        int num,startX,startY,i;
         for (int dx=-1;dx<2;dx++){
             for (int dy=-1;dy<2;dy++){
                 if (dy==0&&dx==0) continue;
                 num=find(x,y,dx,dy,id);
                 if (num>0){
-
+                    startX=x+dx;startY=y+dy;
+                    for (i=0;i<num;i++){
+                        data[startX+i*dx][startY+i*dy]= (byte) id;
+                    }
                 }
             }
         }

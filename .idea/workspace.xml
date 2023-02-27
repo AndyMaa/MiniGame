@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="MiniGame" />
+    </artifacts-to-build>
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="0bea6f4a-c1e1-467d-adfb-7b7970f54f27" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -70,6 +75,7 @@
       <workItem from="1677215211683" duration="1579000" />
       <workItem from="1677226589202" duration="1641000" />
       <workItem from="1677474872920" duration="1030000" />
+      <workItem from="1677485701755" duration="3060000" />
     </task>
     <servers />
   </component>

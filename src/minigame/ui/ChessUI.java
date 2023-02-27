@@ -21,6 +21,7 @@ public class ChessUI extends JPanel implements ComponentListener, MouseMotionLis
         addMouseMotionListener(this);
         addMouseListener(this);
         setButton();
+        More.init();
     }
 
     public void setButton(){
@@ -65,8 +66,9 @@ public class ChessUI extends JPanel implements ComponentListener, MouseMotionLis
     }
 
     private static final Color highLight=new Color(54, 227, 241, 120);
+    private static final Color click=new Color(15, 21, 21, 205);
     private static final Color purple=new Color(133, 56, 220);
-    private static final Color blue=new Color(33, 60, 238);
+    private static final Color blue=new Color(41, 180, 241);
     @Override
     public void paint(Graphics g) {
         super.paint(g);
@@ -92,9 +94,13 @@ public class ChessUI extends JPanel implements ComponentListener, MouseMotionLis
                 }
             }
         }
+
+        if (lastX==-1||lastY==-1||!chess.isValid(lastX,lastY,Game.thePlayer.getId())) return;
         g.setColor(highLight);
-        if (lastX==-1||lastY==-1) return;
         g.fillRect(rX+lastX*blockSize,rY+lastY*blockSize,blockSize,blockSize);
+        if (pressX==-1||pressY==-1) return;
+        g.setColor(click);
+        g.fillRect(rX+pressX*blockSize,rY+pressY*blockSize,blockSize,blockSize);
     }
 
     /**
@@ -117,17 +123,30 @@ public class ChessUI extends JPanel implements ComponentListener, MouseMotionLis
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        Game.thePlayer.step(toBlockX(e.getX()),toBlockY(e.getY()));
-    }
 
+    }
+    private int pressX=-1;
+    private int pressY=-1;
     @Override
     public void mousePressed(MouseEvent e) {
-
+        int newX=toBlockX(e.getX());
+        int newY=toBlockY(e.getY());
+        if (newX==pressX&&newY==pressY) return;//没有变化就return
+        pressX=newX>=chess.size||newX<0?-1:newX;
+        pressY=newY>=chess.size||newY<0?-1:newY;
+        repaint();
     }
 
     @Override
     public void mouseReleased(MouseEvent e) {
-
+        System.out.println("release");
+        if (toBlockX(e.getX())==pressX&&toBlockY(e.getY())==pressY&&pressX!=-1&&pressY!=-1){
+            System.out.println("step");
+            Game.thePlayer.step(pressX,pressY);
+        }
+        pressX=-1;
+        pressY=-1;
+        repaint();
     }
 
     @Override
