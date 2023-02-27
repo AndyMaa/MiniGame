@@ -23,7 +23,6 @@ public class Chess {
     private ChessUI ui;
     public void setUI(ChessUI ui){
         this.ui=ui;
-
     }
 
     public Chess(int size){
@@ -48,9 +47,41 @@ public class Chess {
     /**
      * 设置某个点的状态
      */
-    public void set(int x,int y,int state){
-        data[x][y]= (byte) state;
+    public void set(int x,int y,int id){
+        data[x][y]= (byte) id;
+        int num;
+        for (int dx=-1;dx<2;dx++){
+            for (int dy=-1;dy<2;dy++){
+                if (dy==0&&dx==0) continue;
+                num=find(x,y,dx,dy,id);
+                if (num>0){
+
+                }
+            }
+        }
         ui.repaint();
+    }
+
+    /**
+     * 查找指定方向上id可以吃掉的棋子的数量
+     * @param deltaX x轴变化量
+     * @param deltaY y轴变化量
+     * @return 棋子的数量
+     */
+    public int find(int x,int y,int deltaX,int deltaY,int id){
+        int xx=x+deltaX,yy=y+deltaY;
+        byte enemy= (byte) (3-id);
+        byte buff;
+        int count=0;
+        for (;;xx+=deltaX,yy+=deltaY){
+            if (xx<0||yy<0||xx==size||yy==size) return 0;
+            buff=data[xx][yy];
+            if (buff==enemy) count++;
+            else {
+                if (buff==0) return 0;
+                if (buff==id) return count;
+            }
+        }
     }
 
     /**
@@ -58,78 +89,14 @@ public class Chess {
      * 现在只判断是否为空，后期再判断是否符合规则
      */
     public boolean isValid(int x,int y,int id){
-        //查找横竖上是否存在自己的棋子
-//        int i,j;
-//        byte[] c;
-//        boolean valid=false;
-//        //检测左边
-//        if (x>1){
-//            for (i=x-1;i>=0;i--){
-////                c=;
-//                if (data[i][y]==id){//最近的自己的棋子
-//                    valid=true;
-//                    for (j=i;j<x;j++){
-//                        //如果有空
-//                        if (data[j][y]==0){
-//                            valid=false;
-//                            break;
-//                        }
-//                    }
-//                    if (valid) return data[x][y]==0;
-//                    break;
-//                }
-//            }
-//        }
-//        //检测右边
-//        if (x<size-2){
-//            for (i=x+1;i<size;i++){
-//                if (data[i][y]==id){
-//                    valid=true;
-//                    for (j=x+1;j<i+1;j++){
-//                        if (data[j][y]==0){
-//                            valid=false;
-//                            break;
-//                        }
-//                    }
-//                    if (valid) return data[x][y]==0;
-//                    break;
-//                }
-//            }
-//        }
-//        //检测上边
-//        if (y>1){
-//            for (i=y-1;i>=0;i++){
-//                c=data[x];
-//                if (c[i]==id){
-//                    valid=true;
-//                    for (j=i;j<y;j++){
-//                        if (data[x][j]==0){
-//                            valid=false;
-//                            break;
-//                        }
-//                    }
-//                    if (valid) return data[x][y]==0;
-//                    break;
-//                }
-//            }
-//        }
-//        //检测下边
-//        if (y<size-2){
-//            for (i=y+1;i<size;i++){
-//                if (data[x][i]==id){
-//                    valid=true;
-//                    for (j=y+1;j<i+1;j++){
-//                        if (data[x][j]==0){
-//                            valid=false;
-//                            break;
-//                        }
-//                    }
-//                    if (valid) return data[x][y]==0;
-//                    break;
-//                }
-//            }
-//        }
-//
-        return data[x][y]==0;
+        if (data[x][y]!=0) return false;
+        return find(x, y, 1, 0, id) > 0
+                || find(x, y, -1, 0, id) > 0
+                || find(x, y, 0, 1, id) > 0
+                || find(x, y, 0, -1, id) > 0
+                || find(x, y, 1, 1, id) > 0
+                || find(x, y, -1, 1, id) > 0
+                || find(x, y, -1, -1, id) > 0
+                || find(x, y, 1, -1, id) > 0;
     }
 }

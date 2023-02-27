@@ -17,14 +17,18 @@ public class ChessUI extends JPanel implements ComponentListener, MouseMotionLis
     public ChessUI(){
         super();
         instance=this;
-        //添加按钮
-        add(More.EXIT) ;
-        add(More.REGRET);
-
         addComponentListener(this);
         addMouseMotionListener(this);
         addMouseListener(this);
+        setButton();
     }
+
+    public void setButton(){
+        //添加按钮
+        add(More.EXIT) ;
+        add(More.REGRET);
+    }
+
     public void setChess(Chess chess){
         this.chess=chess;
         chess.setUI(this);
@@ -79,7 +83,7 @@ public class ChessUI extends JPanel implements ComponentListener, MouseMotionLis
         for (int i=0;i<chess.size;i++){
             for (int j=0;j<chess.size;j++){
                 current=data[i][j];
-                g.drawString(String.valueOf(chess.isValid(i,j,Game.thePlayer.getId())),rX+i*blockSize,rY+j*blockSize);
+                g.drawString(String.valueOf(chess.isValid(i,j,Game.thePlayer.getId())),rX+i*blockSize+3,rY+j*blockSize+10);
                 if (current!=0){
                     if (current==1) g.setColor(purple);
                     else if (current==2) g.setColor(blue);
