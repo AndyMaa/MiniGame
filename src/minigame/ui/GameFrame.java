@@ -4,10 +4,7 @@ import minigame.core.Chess;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.WindowEvent;
-import java.awt.event.WindowListener;
 import java.util.HashMap;
-import java.util.LinkedList;
 
 /**
  * 游戏里的所有控件，按钮什么的，不要使用Swing！
