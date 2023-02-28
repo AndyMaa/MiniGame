@@ -1,6 +1,5 @@
 package minigame.ui;
 
-import minigame.core.Chess;
 import minigame.core.Game;
 import minigame.core.event.listeners.SettingListener;
 
@@ -29,10 +28,11 @@ public class GameFrame extends JFrame {
         setSize(600, 630);
         setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//        Chess chess=new Chess(10);
+//      Chess chess=new Chess(10);
         modes.put("game",new ChessUI());
         modes.put("welcome",new WelcomePane());
         setMode("welcome");
+        Game.isRunning=false;
         init();
     }
 
@@ -51,12 +51,14 @@ public class GameFrame extends JFrame {
         }
     }
 
+    /**
+     * 已测试
+     * @return 游戏是否在运行
+     */
     public static boolean CheckMode(){
-        //JPanel welcome = modes.get("welcome");
-        //JPanel game = modes.get("game");
-        if (modes.get("welcome")!=null){
+        if (modes.get("welcome").isShowing()){
             Game.isRunning=false;
-        }else if (modes.get("game")!=null){
+        }else if (modes.get("game").isShowing()){
             Game.isRunning=true;
         }
         return Game.isRunning;

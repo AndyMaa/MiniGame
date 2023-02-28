@@ -19,7 +19,7 @@ public class WelcomePane extends JPanel {
     public WelcomePane(){
         super();
         setVisible(true);
-        setSize(800, 300);
+        setSize(600, 200);
         init();
     }
 

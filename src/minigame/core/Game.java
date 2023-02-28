@@ -16,10 +16,10 @@ public class Game {
      * 正在运行的服务器
      */
     private static Server server;
-    public static int size;
+    public static int size=10;
 
     //检测游戏是否在运行
-    public static boolean isRunning=false;
+    public static boolean isRunning;
 
     public static void start(){
         Server server=new LocalServer(size);

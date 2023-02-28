@@ -38,6 +38,7 @@ public abstract class RemoteServer implements Runnable, Server {
         }
         System.out.println("Thread stop");
     }
+
     public void close(){
         if (connection==null){
             if (socket!=null){
