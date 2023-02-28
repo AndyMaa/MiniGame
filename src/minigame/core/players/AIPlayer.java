@@ -25,4 +25,12 @@ public class AIPlayer extends AbstractPlayer {
         }
         server.step(this, result[0], result[1]);
     }
+
+    @Override
+    public void setId(int id) {
+        super.setId(id);
+        if (id==1){
+            step(0,0);
+        }
+    }
 }

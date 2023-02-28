@@ -1,6 +1,7 @@
 package minigame.ui;
 
 import minigame.core.Chess;
+import minigame.core.event.listeners.SettingListener;
 
 import javax.swing.*;
 import java.awt.*;
@@ -12,6 +13,10 @@ import java.util.HashMap;
  */
 public class GameFrame extends JFrame {
     public static GameFrame instance;
+    public static JMenuBar menuBar=new JMenuBar();
+    public static JMenu menu=new JMenu("Preferences");
+    public static JMenuItem settings=new JMenuItem("settings");
+
     /**
      * 储存mode和对应的组件
      */
@@ -27,6 +32,7 @@ public class GameFrame extends JFrame {
         modes.put("game",new ChessUI());
         modes.put("welcome",new WelcomePane());
         setMode("welcome");
+        init();
     }
 
     /**
@@ -38,8 +44,19 @@ public class GameFrame extends JFrame {
             getContentPane().removeAll();
             getContentPane().add(modes.get(mode),BorderLayout.CENTER);
             validate();
+            GameFrame.instance.repaint();
         }else {
             System.out.println("未知的mode?  "+mode);
         }
+    }
+
+    /**
+     * 设置
+     */
+    public void init(){
+        menu.add(settings);
+        menuBar.add(menu);
+        setJMenuBar(menuBar);
+        settings.addActionListener(new SettingListener());
     }
 }

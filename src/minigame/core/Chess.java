@@ -44,6 +44,8 @@ public final class Chess {
         return data;
     }
 
+    public int lastX=-1;
+    public int lastY=-1;
     /**
      * 设置某个点的状态
      */
@@ -62,6 +64,8 @@ public final class Chess {
                 }
             }
         }
+        lastX=x;
+        lastY=y;
         ui.repaint();
     }
 

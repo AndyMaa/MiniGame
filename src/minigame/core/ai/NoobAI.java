@@ -4,7 +4,7 @@ import minigame.core.Chess;
 
 import java.util.LinkedList;
 
-public class NoobAI implements AI{
+public final class NoobAI implements AI{
     @Override
     public int[] nextStep(Chess chess, int id) {
         int[] pos;

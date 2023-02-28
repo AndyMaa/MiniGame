@@ -2,6 +2,7 @@ package minigame.core.event.listeners;
 
 import minigame.core.Game;
 import minigame.core.ai.NoobAI;
+import minigame.core.ai.NormalAI;
 import minigame.core.players.AIPlayer;
 import minigame.core.server.LocalServer;
 import minigame.core.server.Server;
@@ -17,7 +18,7 @@ public class AIListener implements ActionListener {
         Server server=new LocalServer(10);
         ChessUI.instance.setChess(server.getChess());
         Game.thePlayer.join(server);
-        AIPlayer ai=new AIPlayer(new NoobAI());
+        AIPlayer ai=new AIPlayer(new NormalAI());
         ai.join(server);
         GameFrame.instance.setMode("game");
         System.out.println("ai mode");

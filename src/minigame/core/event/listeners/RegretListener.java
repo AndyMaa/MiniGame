@@ -1,5 +1,7 @@
 package minigame.core.event.listeners;
 
+import minigame.core.Chess;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 

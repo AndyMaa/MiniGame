@@ -1,8 +1,6 @@
 package minigame.core.event.listeners;
 
 import minigame.core.Game;
-import minigame.core.ai.NoobAI;
-import minigame.core.players.AIPlayer;
 import minigame.core.players.RemotePlayer;
 import minigame.core.server.LocalServer;
 import minigame.core.server.Server;
@@ -21,6 +19,6 @@ public class RemoteListener implements ActionListener {
         RemotePlayer remote=new RemotePlayer();
         remote.join(server);
         GameFrame.instance.setMode("game");
-        System.out.println("ai mode");
+        System.out.println("remote mode");
     }
 }

@@ -15,8 +15,10 @@ public class Game {
      * 本地玩家
      */
     public static Player thePlayer=new LocalPlayer();
+    public static int size;
+
     public static void start(){
-        Server server=new LocalServer(10);
+        Server server=new LocalServer(size);
         ChessUI.instance.setChess(server.getChess());
         thePlayer.join(server);
 //        if (WelcomePane.AI.isSelected()){

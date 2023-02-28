@@ -69,21 +69,29 @@ public class ChessUI extends JPanel implements ComponentListener, MouseMotionLis
     private static final Color click=new Color(15, 21, 21, 205);
     private static final Color purple=new Color(133, 56, 220);
     private static final Color blue=new Color(41, 180, 241);
+    private static final Color lastStep=new Color(238, 226, 46,0);
     @Override
     public void paint(Graphics g) {
         super.paint(g);
         //缓存,因为要频繁调用
         int blockSize=this.blockSize;
+        Chess chess=this.chess;
         //TODO 在最后会多画一点
         for (int i=0;i<chess.size+1;i++){
             g.drawLine(rX+i*blockSize,rY,rX+i*blockSize,rY+rSize);
             g.drawLine(rX,rY+i*blockSize,rX+rSize,rY+i*blockSize);
         }
         byte[][] data=chess.getData();
+        //高亮最后一步
+        if (chess.lastX!=-1){
+            g.setColor(lastStep);
+            g.fillRect(rX+chess.lastX*blockSize,rY+chess.lastY*blockSize,blockSize,blockSize);
+            g.setColor(Color.black);
+        }
         //渲染棋子
-        int current;
+        int current,j;
         for (int i=0;i<chess.size;i++){
-            for (int j=0;j<chess.size;j++){
+            for (j=0;j<chess.size;j++){
                 current=data[i][j];
                 g.drawString(String.valueOf(chess.isValid(i,j,Game.thePlayer.getId())),rX+i*blockSize+3,rY+j*blockSize+10);
                 if (current!=0){
@@ -139,9 +147,7 @@ public class ChessUI extends JPanel implements ComponentListener, MouseMotionLis
 
     @Override
     public void mouseReleased(MouseEvent e) {
-        System.out.println("release");
         if (toBlockX(e.getX())==pressX&&toBlockY(e.getY())==pressY&&pressX!=-1&&pressY!=-1){
-            System.out.println("step");
             Game.thePlayer.step(pressX,pressY);
         }
         pressX=-1;
