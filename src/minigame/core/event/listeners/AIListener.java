@@ -16,6 +16,7 @@ public class AIListener implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         Server server=new LocalServer(10);
+        Game.setServer(server);
         ChessUI.instance.setChess(server.getChess());
         Game.thePlayer.join(server);
         AIPlayer ai=new AIPlayer(new NormalAI());

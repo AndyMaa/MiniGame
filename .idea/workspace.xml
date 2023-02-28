@@ -47,14 +47,33 @@
       <recent name="minigame" />
     </key>
   </component>
-  <component name="RunManager">
-    <configuration name="Unnamed" type="Application" factoryName="Application" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="minigame.Main" />
+  <component name="RunManager" selected="Application.MiniGame">
+    <configuration name="Client" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="minigame.test.Client" />
       <module name="MiniGame" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="MiniGame" type="Application" factoryName="Application" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="minigame.MiniGame" />
+      <module name="MiniGame" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Server" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="minigame.test.TestServer" />
+      <module name="MiniGame" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Application.Server" />
+      <item itemvalue="Application.Client" />
+      <item itemvalue="Application.MiniGame" />
+    </list>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -77,6 +96,9 @@
       <workItem from="1677474872920" duration="1030000" />
       <workItem from="1677485701755" duration="3060000" />
       <workItem from="1677545301861" duration="1628000" />
+      <workItem from="1677560582669" duration="294000" />
+      <workItem from="1677561066364" duration="1329000" />
+      <workItem from="1677572143201" duration="3803000" />
     </task>
     <servers />
   </component>

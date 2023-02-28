@@ -1,6 +1,7 @@
 package minigame.ui;
 
 import minigame.core.Chess;
+import minigame.core.Game;
 import minigame.core.event.listeners.SettingListener;
 
 import javax.swing.*;
@@ -20,7 +21,7 @@ public class GameFrame extends JFrame {
     /**
      * 储存mode和对应的组件
      */
-    public final HashMap<String,JPanel> modes=new HashMap<>();
+    public static final HashMap<String,JPanel> modes=new HashMap<>();
 
     public GameFrame(String name){
         super(name);
@@ -48,6 +49,17 @@ public class GameFrame extends JFrame {
         }else {
             System.out.println("未知的mode?  "+mode);
         }
+    }
+
+    public static boolean CheckMode(){
+        //JPanel welcome = modes.get("welcome");
+        //JPanel game = modes.get("game");
+        if (modes.get("welcome")!=null){
+            Game.isRunning=false;
+        }else if (modes.get("game")!=null){
+            Game.isRunning=true;
+        }
+        return Game.isRunning;
     }
 
     /**

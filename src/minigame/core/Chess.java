@@ -2,12 +2,15 @@ package minigame.core;
 
 import minigame.ui.ChessUI;
 
+import java.io.Serializable;
+
 /**
  * 棋盘
  * 这不是一个swing控件，只是一个虚拟的棋盘
  * 渲染模块负责将其可视化
  */
-public final class Chess {
+public final class Chess implements Serializable {
+    private static final long serialVersionUID=234278342L;
     /**
      * 储存期棋盘数据
      */
@@ -20,7 +23,7 @@ public final class Chess {
      * 一个ChessUI的指针，当数据变化时调用repaint
      * 在ChessUI.setChess中会自动绑定
      */
-    private ChessUI ui;
+    private transient ChessUI ui;
     public void setUI(ChessUI ui){
         this.ui=ui;
     }

@@ -1,24 +1,29 @@
 package minigame.core;
 
-import minigame.core.ai.NoobAI;
-import minigame.core.players.AIPlayer;
 import minigame.core.players.LocalPlayer;
 import minigame.core.players.Player;
-import minigame.core.players.RemotePlayer;
 import minigame.core.server.LocalServer;
+import minigame.core.server.MainServer;
 import minigame.core.server.Server;
 import minigame.ui.ChessUI;
-import minigame.ui.WelcomePane;
 
 public class Game {
     /**
      * 本地玩家
      */
     public static Player thePlayer=new LocalPlayer();
+    /**
+     * 正在运行的服务器
+     */
+    private static Server server;
     public static int size;
+
+    //检测游戏是否在运行
+    public static boolean isRunning=false;
 
     public static void start(){
         Server server=new LocalServer(size);
+        Game.setServer(server);
         ChessUI.instance.setChess(server.getChess());
         thePlayer.join(server);
 //        if (WelcomePane.AI.isSelected()){
@@ -30,5 +35,16 @@ public class Game {
 //            new RemotePlayer().join(server);
 //        }
 //        new AIPlayer().jo
+    }
+
+    public static Server getServer() {
+        return server;
+    }
+
+    public static void setServer(Server server) {
+        if (Game.server instanceof MainServer){
+            ((MainServer) Game.server).close();
+        }
+        Game.server = server;
     }
 }
