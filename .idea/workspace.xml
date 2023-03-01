@@ -7,6 +7,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0bea6f4a-c1e1-467d-adfb-7b7970f54f27" name="Changes" comment="" />
+    <list id="2fe59900-6fe2-49cf-ae65-ba351ba664c6" name="Changes by YKJ6" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -55,7 +56,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="MiniGame" type="Application" factoryName="Application" nameIsGenerated="true">
+    <configuration name="MiniGame" type="Application" factoryName="Application" singleton="false" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="minigame.MiniGame" />
       <module name="MiniGame" />
       <method v="2">
@@ -99,6 +100,7 @@
       <workItem from="1677560582669" duration="294000" />
       <workItem from="1677561066364" duration="1329000" />
       <workItem from="1677572143201" duration="3803000" />
+      <workItem from="1677632253603" duration="1125000" />
     </task>
     <servers />
   </component>

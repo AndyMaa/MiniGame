@@ -3,6 +3,7 @@ package minigame.ui;
 import minigame.core.event.listeners.AIListener;
 import minigame.core.event.listeners.RemoteListener;
 import minigame.core.event.listeners.StartListener;
+import minigame.ui.buttons.More;
 
 import javax.swing.*;
 import java.awt.*;
@@ -30,6 +31,8 @@ public class WelcomePane extends JPanel {
         add(AI, BorderLayout.CENTER);
         add(NATIVE);
         add(NETWORK);
+        add(More.CREATE_SERVER);
+        add(More.JOIN_SERVER);
 
         AI.addActionListener(new AIListener());
         NATIVE.addActionListener(new StartListener());

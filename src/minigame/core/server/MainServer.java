@@ -1,7 +1,9 @@
 package minigame.core.server;
 
 import minigame.core.Chess;
+import minigame.core.net.InitPacket;
 import minigame.core.net.Packet;
+import minigame.core.net.StepPacket;
 import minigame.core.players.Player;
 
 import java.io.IOException;
@@ -14,7 +16,8 @@ public class MainServer extends RemoteServer{
     public int port;
     public String ip;
     ServerSocket serverS;
-    public MainServer() {
+    public MainServer(int size) {
+        chess=new Chess(size);
         new Thread(new Runnable() {
             /**
              * 监听玩家加入
@@ -40,6 +43,8 @@ public class MainServer extends RemoteServer{
                 }
                 try {
                     connection = new Connection(socket);
+                    online=true;
+                    connection.writePacket(new InitPacket(chess,player.getId()));
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -67,16 +72,6 @@ public class MainServer extends RemoteServer{
     }
 
     @Override
-    public boolean canStepAt(Player player, int x, int y) {
-        return false;
-    }
-
-    @Override
-    public void step(Player player, int x, int y) {
-
-    }
-
-    @Override
     public void close() {
         super.close();
         if (serverS!=null){
@@ -91,6 +86,10 @@ public class MainServer extends RemoteServer{
 
     @Override
     public void packetReceive(Packet packet) {
-
+        if (packet instanceof StepPacket){
+            StepPacket stepPacket = (StepPacket) packet;
+            chess.set(stepPacket.x, stepPacket.y, turn);
+            turn=player.getId();
+        }
     }
 }

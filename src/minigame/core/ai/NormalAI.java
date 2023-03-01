@@ -2,8 +2,6 @@ package minigame.core.ai;
 
 import minigame.core.Chess;
 
-import java.util.LinkedList;
-
 public class NormalAI implements AI{
     @Override
     public int[] nextStep(Chess chess, int id) {

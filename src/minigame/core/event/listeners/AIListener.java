@@ -1,7 +1,6 @@
 package minigame.core.event.listeners;
 
 import minigame.core.Game;
-import minigame.core.ai.NoobAI;
 import minigame.core.ai.NormalAI;
 import minigame.core.players.AIPlayer;
 import minigame.core.server.LocalServer;

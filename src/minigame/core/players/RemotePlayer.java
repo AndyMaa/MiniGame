@@ -1,6 +1,5 @@
 package minigame.core.players;
 
-import minigame.core.Chess;
 import minigame.core.server.Server;
 
 /**
