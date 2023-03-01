@@ -13,7 +13,7 @@ import java.net.Socket;
 /**
  * 远程服务器的镜像
  */
-public class GhostServer extends RemoteServer {
+public final class GhostServer extends RemoteServer {
     private int playerId = 0;
 
     public GhostServer(String ip, int port) {

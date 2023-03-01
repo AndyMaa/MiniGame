@@ -5,7 +5,7 @@ import minigame.core.Game;
 import minigame.core.players.LocalPlayer;
 import minigame.core.players.Player;
 
-public class LocalServer implements Server{
+public final class LocalServer implements Server{
     private final Chess chess;
     private Player p1;
     private Player p2;

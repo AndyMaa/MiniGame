@@ -7,7 +7,7 @@ import minigame.core.server.MainServer;
 import minigame.core.server.Server;
 import minigame.ui.ChessUI;
 
-public class Game {
+public final class Game {
     /**
      * 本地玩家
      */

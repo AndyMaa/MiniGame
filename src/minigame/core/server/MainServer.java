@@ -12,7 +12,7 @@ import java.net.ServerSocket;
 /**
  * 真正的服务器
  */
-public class MainServer extends RemoteServer{
+public final class MainServer extends RemoteServer{
     public int port;
     public String ip;
     ServerSocket serverS;
