@@ -12,6 +12,7 @@ import java.awt.event.*;
  * 渲染一个Chess
  */
 public final class ChessUI extends JPanel implements ComponentListener, MouseMotionListener, MouseListener {
+
     public static ChessUI instance;
     private Chess chess;
     public ChessUI(){

@@ -34,9 +34,15 @@ public class Renderer {
     public void text(String s,int x,int y){
         g.drawString(s,x,y);
     }
-    public void text(String s,int x,int y,Color color){
+    public void text(String s, int x, int y, Font font, Color color){
         g.setColor(color);
         g.drawString(s,x,y);
+        g.setFont(font);
+    }
+
+    public void text(String s,int x,int y, Font font){
+        g.drawString(s,x,y);
+        g.setFont(font);
     }
     public void drawImage(Image img,int x,int y){
         if (img==null) return;

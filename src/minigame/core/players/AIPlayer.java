@@ -20,7 +20,7 @@ public final class AIPlayer extends AbstractPlayer {
 //        long t0=System.currentTimeMillis();
         int[] result = ai.nextStep(server.getChess(), id);
         if (result==null){
-            JOptionPane.showMessageDialog(null,"AI已经无棋可走了！棋盘上妻子多的人获胜");
+            JOptionPane.showMessageDialog(null,"AI已经无棋可走了！棋盘上棋子多的人获胜");
             return;
         }
 //        long time=System.currentTimeMillis()-t0;

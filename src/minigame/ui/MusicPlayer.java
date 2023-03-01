@@ -10,7 +10,7 @@ public class MusicPlayer {
     public static void playBackground(){
         if (music==null){
             try {
-                AudioInputStream stream= AudioSystem.getAudioInputStream(new File("res/music.mp3"));
+                AudioInputStream stream= AudioSystem.getAudioInputStream(new File("src/res/music.mp3"));
                 music=new byte[stream.available()];
                 stream.read(music);
                 format=stream.getFormat();

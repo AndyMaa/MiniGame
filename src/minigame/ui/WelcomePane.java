@@ -18,7 +18,7 @@ public class WelcomePane extends JPanel {
     public WelcomePane(){
         super();
         setVisible(true);
-        setSize(600, 200);
+        setSize(600, 630);
         init();
     }
 
@@ -29,8 +29,17 @@ public class WelcomePane extends JPanel {
         add(NATIVE);
         add(More.CREATE_SERVER);
         add(More.JOIN_SERVER);
-
+        setBackground(Color.lightGray);
         AI.addActionListener(new AIListener());
         NATIVE.addActionListener(new StartListener());
+    }
+
+    @Override
+    public void paint(Graphics g){
+        String s="Welcome to MiniGame!";
+        super.paint(g);
+        g.setFont(new Font(Font.SANS_SERIF, Font.ITALIC, 20));
+        g.setColor(Color.RED);
+        g.drawString(s, 100, 50);
     }
 }
