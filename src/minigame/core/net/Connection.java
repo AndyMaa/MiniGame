@@ -1,4 +1,4 @@
-package minigame.core.server;
+package minigame.core.net;
 
 import minigame.core.net.Packet;
 

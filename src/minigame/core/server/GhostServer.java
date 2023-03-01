@@ -1,5 +1,6 @@
 package minigame.core.server;
 
+import minigame.core.net.Connection;
 import minigame.core.net.InitPacket;
 import minigame.core.net.Packet;
 import minigame.core.net.StepPacket;

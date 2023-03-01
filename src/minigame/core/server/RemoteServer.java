@@ -1,6 +1,7 @@
 package minigame.core.server;
 
 import minigame.core.Chess;
+import minigame.core.net.Connection;
 import minigame.core.net.Packet;
 import minigame.core.net.StepPacket;
 import minigame.core.players.Player;

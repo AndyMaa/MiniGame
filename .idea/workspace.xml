@@ -6,7 +6,16 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0bea6f4a-c1e1-467d-adfb-7b7970f54f27" name="Changes" comment="" />
+    <list default="true" id="0bea6f4a-c1e1-467d-adfb-7b7970f54f27" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/minigame/core/server/Connection.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/minigame/core/server/GhostServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/minigame/core/server/GhostServer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/minigame/core/server/MainServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/minigame/core/server/MainServer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/minigame/core/server/RemoteServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/minigame/core/server/RemoteServer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/minigame/res/music.mp3" beforeDir="false" afterPath="$PROJECT_DIR$/src/res/music.mp3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/minigame/test/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/minigame/test/Client.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/minigame/ui/MusicPlayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/minigame/ui/MusicPlayer.java" afterDir="false" />
+    </list>
     <list id="2fe59900-6fe2-49cf-ae65-ba351ba664c6" name="Changes by YKJ6" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,8 +64,12 @@
     <key name="CreateClassDialog.RecentsKey">
       <recent name="minigame" />
     </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\YKJ5\Documents\GitHub\MiniGame\src" />
+      <recent name="C:\Users\YKJ5\Documents\GitHub\MiniGame" />
+    </key>
   </component>
-  <component name="RunManager" selected="Application.MiniGame">
+  <component name="RunManager" selected="Application.Client">
     <configuration name="Client" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="minigame.test.Client" />
       <module name="MiniGame" />
@@ -111,10 +124,22 @@
       <workItem from="1677632253603" duration="1125000" />
       <workItem from="1677644249199" duration="1249000" />
       <workItem from="1677648419138" duration="283000" />
+      <workItem from="1677665218832" duration="1561000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>
