@@ -13,6 +13,7 @@ public class CreateServerListener implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         MainServer server=new MainServer(Game.size);
+        Game.setServer(server);
         Game.thePlayer.join(server);
         ChessUI.instance.setChess(server.getChess());
         GameFrame.instance.setMode("game");

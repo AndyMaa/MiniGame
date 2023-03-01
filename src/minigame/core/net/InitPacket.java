@@ -2,7 +2,7 @@ package minigame.core.net;
 
 import minigame.core.Chess;
 
-public class InitPacket extends Packet{
+public final class InitPacket extends Packet{
     private static final long serialVersionUID=1887415157L;
     public final Chess chess;
     /**

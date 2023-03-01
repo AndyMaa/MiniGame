@@ -1,10 +1,7 @@
 package minigame.core.event.listeners;
 
 import minigame.core.Game;
-import minigame.core.players.RemotePlayer;
 import minigame.core.server.GhostServer;
-import minigame.ui.ChessUI;
-import minigame.ui.GameFrame;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -19,7 +16,8 @@ public class JoinServerListener implements ActionListener {
         String p=result[1];
         int port=Integer.parseInt(p);
         GhostServer ghost=new GhostServer(ip, port);
+        Game.setServer(ghost);
         Game.thePlayer.join(ghost);
-        GameFrame.instance.setMode("game");
+
     }
 }

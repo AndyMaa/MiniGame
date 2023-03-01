@@ -44,7 +44,7 @@ public class MainServer extends RemoteServer{
                 try {
                     connection = new Connection(socket);
                     online=true;
-                    connection.writePacket(new InitPacket(chess,player.getId()));
+                    connection.writePacket(new InitPacket(chess,3-player.getId()));
                 } catch (IOException e) {
                     e.printStackTrace();
                 }

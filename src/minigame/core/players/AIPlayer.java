@@ -7,7 +7,7 @@ import javax.swing.*;
 /**
  * 电脑玩家
  */
-public class AIPlayer extends AbstractPlayer {
+public final class AIPlayer extends AbstractPlayer {
     private final AI ai;
 
 

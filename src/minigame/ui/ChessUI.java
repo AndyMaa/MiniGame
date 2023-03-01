@@ -79,8 +79,8 @@ public class ChessUI extends JPanel implements ComponentListener, MouseMotionLis
         Chess chess=this.chess;
         //TODO 在最后会多画一点
         for (int i=0;i<chess.size+1;i++){
-            g.drawLine(rX+i*blockSize,rY,rX+i*blockSize,rY+rSize);
-            g.drawLine(rX,rY+i*blockSize,rX+rSize,rY+i*blockSize);
+            g.drawLine(rX+i*blockSize,rY,rX+i*blockSize,rY+rSize-2);
+            g.drawLine(rX,rY+i*blockSize,rX+rSize-2,rY+i*blockSize);
         }
         byte[][] data=chess.getData();
         //高亮最后一步
