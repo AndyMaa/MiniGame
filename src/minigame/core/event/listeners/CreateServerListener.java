@@ -5,17 +5,21 @@ import minigame.core.server.MainServer;
 import minigame.ui.ChessUI;
 import minigame.ui.GameFrame;
 
-import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class CreateServerListener implements ActionListener {
+    public static String ip;
+    public static int port;
     @Override
     public void actionPerformed(ActionEvent e) {
         MainServer server=new MainServer(Game.size);
         Game.setServer(server);
         Game.thePlayer.join(server);
         ChessUI.instance.setChess(server.getChess());
+        ip=MainServer.ip;
+        port=MainServer.port;
         GameFrame.instance.setMode("game");
+
     }
 }

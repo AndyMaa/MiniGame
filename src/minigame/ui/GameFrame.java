@@ -2,6 +2,7 @@ package minigame.ui;
 
 import minigame.core.Game;
 import minigame.core.event.listeners.SettingListener;
+import minigame.core.server.MainServer;
 
 import javax.swing.*;
 import java.awt.*;
@@ -13,6 +14,7 @@ import java.util.HashMap;
  */
 public class GameFrame extends JFrame {
     public static GameFrame instance;
+
     public static JMenuBar menuBar=new JMenuBar();
     public static JMenu menu=new JMenu("Preferences");
     public static JMenuItem settings=new JMenuItem("settings");

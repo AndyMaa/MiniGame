@@ -14,8 +14,8 @@ import java.net.ServerSocket;
  * 真正的服务器
  */
 public final class MainServer extends RemoteServer{
-    public int port;
-    public String ip;
+    public static int port;
+    public static String ip;
     ServerSocket serverS;
     public MainServer(int size) {
         chess=new Chess(size);

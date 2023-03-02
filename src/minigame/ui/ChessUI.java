@@ -2,6 +2,8 @@ package minigame.ui;
 
 import minigame.core.Chess;
 import minigame.core.Game;
+import minigame.core.event.listeners.CreateServerListener;
+import minigame.core.server.MainServer;
 import minigame.ui.buttons.More;
 
 import javax.swing.*;
@@ -12,7 +14,8 @@ import java.awt.event.*;
  * 渲染一个Chess
  */
 public final class ChessUI extends JPanel implements ComponentListener, MouseMotionListener, MouseListener {
-
+    public static JLabel ip=new JLabel("ip:"+CreateServerListener.ip);
+    public static JLabel port=new JLabel("端口:"+CreateServerListener.port);
     public static ChessUI instance;
     private Chess chess;
     public ChessUI(){
@@ -21,11 +24,15 @@ public final class ChessUI extends JPanel implements ComponentListener, MouseMot
         addComponentListener(this);
         addMouseMotionListener(this);
         addMouseListener(this);
-        setButton();
+        setUP();
         More.init();
     }
 
-    public void setButton(){
+    public void setUP(){
+        add(ip);
+        add(new JLabel("  "));
+        add(port);
+        add(new JLabel("  "));
         //添加按钮
         add(More.EXIT) ;
         add(More.REGRET);
