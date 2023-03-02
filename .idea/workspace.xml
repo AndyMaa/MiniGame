@@ -8,18 +8,9 @@
   <component name="ChangeListManager">
     <list default="true" id="0bea6f4a-c1e1-467d-adfb-7b7970f54f27" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/META-INF/MANIFEST.MF" beforeDir="false" afterPath="$PROJECT_DIR$/META-INF/MANIFEST.MF" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/MiniGame/MiniGame.jar" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/MiniGame/MiniGame.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MiniGame/res/music.mp3" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/minigame/ui/MusicPlayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/minigame/ui/MusicPlayer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/res/music.mp3" beforeDir="false" />
     </list>
-    <list id="2fe59900-6fe2-49cf-ae65-ba351ba664c6" name="Changes by YKJ6" comment="">
-      <change beforePath="$PROJECT_DIR$/src/minigame/core/event/listeners/CreateServerListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/minigame/core/event/listeners/CreateServerListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/minigame/core/server/MainServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/minigame/core/server/MainServer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/minigame/ui/ChessUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/minigame/ui/ChessUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/minigame/ui/GameFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/minigame/ui/GameFrame.java" afterDir="false" />
-    </list>
+    <list id="2fe59900-6fe2-49cf-ae65-ba351ba664c6" name="Changes by YKJ6" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -129,6 +120,7 @@
       <workItem from="1677648419138" duration="283000" />
       <workItem from="1677665218832" duration="1561000" />
       <workItem from="1677718153166" duration="1611000" />
+      <workItem from="1677730164170" duration="696000" />
     </task>
     <servers />
   </component>
