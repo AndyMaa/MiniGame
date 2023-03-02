@@ -12,7 +12,8 @@ public class MusicPlayer {
         if (music==null){
             try {
                 InputStream is=MusicPlayer.class.getClassLoader().getResource("res/music.wav").openStream();
-                AudioInputStream ais=AudioSystem.getAudioInputStream(is);
+                BufferedInputStream bis=new BufferedInputStream(is);
+                AudioInputStream ais=AudioSystem.getAudioInputStream(bis);
                 format=ais.getFormat();
                 music=new byte[ais.available()];
                 System.out.println(music.length);

@@ -8,12 +8,16 @@
   <component name="ChangeListManager">
     <list default="true" id="0bea6f4a-c1e1-467d-adfb-7b7970f54f27" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/MiniGame/MiniGame.jar" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/MiniGame/MiniGame.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/minigame/MiniGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/minigame/MiniGame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/minigame/test/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/minigame/test/Client.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/minigame/test/TestServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/minigame/test/TestServer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/minigame/ui/GameFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/minigame/ui/GameFrame.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/minigame/ui/MusicPlayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/minigame/ui/MusicPlayer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/res/music.ogg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/res/music.wav" beforeDir="false" afterPath="$PROJECT_DIR$/src/res/music.wav" afterDir="false" />
     </list>
-    <list id="2fe59900-6fe2-49cf-ae65-ba351ba664c6" name="Changes by YKJ6" comment="" />
+    <list id="2fe59900-6fe2-49cf-ae65-ba351ba664c6" name="Changes by YKJ6" comment="">
+      <change beforePath="$PROJECT_DIR$/src/minigame/ui/ChessUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/minigame/ui/ChessUI.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -66,7 +70,7 @@
       <recent name="C:\Users\YKJ5\Documents\GitHub\MiniGame" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.MiniGame">
+  <component name="RunManager" selected="Application.Server">
     <configuration name="Client" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="minigame.test.Client" />
       <module name="MiniGame" />
@@ -123,7 +127,8 @@
       <workItem from="1677648419138" duration="283000" />
       <workItem from="1677665218832" duration="1561000" />
       <workItem from="1677718153166" duration="1611000" />
-      <workItem from="1677730164170" duration="3574000" />
+      <workItem from="1677730164170" duration="3666000" />
+      <workItem from="1677744959903" duration="2705000" />
     </task>
     <servers />
   </component>

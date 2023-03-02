@@ -27,10 +27,9 @@ public class GameFrame extends JFrame {
     public GameFrame(String name){
         super(name);
         instance=this;
-        setSize(600, 630);
+        setSize(700, 750);
         setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//      Chess chess=new Chess(10);
         modes.put("game",new ChessUI());
         modes.put("welcome",new WelcomePane());
         setMode("welcome");
