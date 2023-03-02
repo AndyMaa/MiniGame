@@ -3,31 +3,49 @@ package minigame.ui;
 import javax.sound.sampled.*;
 import java.applet.Applet;
 import java.applet.AudioClip;
-import java.io.BufferedInputStream;
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
 
 public class MusicPlayer {
-    private static byte[] music;
+    private static byte[] music=null;
     private static AudioFormat format;
     public static void playBackground(){
-        try {
-            InputStream is=MusicPlayer.class.getClassLoader().getResource("res/music.ogg").openStream();
-            BufferedInputStream bis=new BufferedInputStream(is);
-            bis.mark(1024);
-            AudioInputStream ais=AudioSystem.getAudioInputStream(bis);
-        } catch (IOException | UnsupportedAudioFileException e) {
-            e.printStackTrace();
+        if (music==null){
+            try {
+                InputStream is=MusicPlayer.class.getClassLoader().getResource("res/music.wav").openStream();
+                AudioInputStream ais=AudioSystem.getAudioInputStream(is);
+                format=ais.getFormat();
+                music=new byte[ais.available()];
+                System.out.println(music.length);
+                ais.read(music);
+                ais.close();
+            } catch (IOException | UnsupportedAudioFileException e) {
+                e.printStackTrace();
+            }
         }
-        AudioClip clip= Applet.newAudioClip(MusicPlayer.class.getClassLoader().getResource("res/music.wav"));
-//        clip.
-        clip.play();
-        System.out.println("wait");
-        try {
-            Thread.sleep(10000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        new Thread(()->{
+            SourceDataLine sd;
+            DataLine.Info info=new DataLine.Info(SourceDataLine.class,format);
+            try {
+                sd= ((SourceDataLine) AudioSystem.getLine(info));
+                sd.open(format, 128000);
+//            if (sd.isControlSupported(FloatControl.Type.MASTER_GAIN)) {
+//                FloatControl volume = (FloatControl) sd.getControl(FloatControl.Type.MASTER_GAIN);
+//                volume.setValue((float) (volume.getMaximum()*0.01));
+//            }
+            } catch (LineUnavailableException e) {
+                e.printStackTrace();
+                return;
+            }
+            int buffSize= sd.getBufferSize();
+            System.out.println("real buff size is "+buffSize);
+            byte[] data=music;
+            int pos=0,max= data.length;
+            sd.start();
+            while (pos<max-buffSize){
+                sd.write(data,pos, buffSize);
+                pos+=buffSize;
+            }
+            System.out.println("end");
+        }).start();
     }
 }
