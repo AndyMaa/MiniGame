@@ -2,22 +2,22 @@
 <project version="4">
   <component name="ArtifactsWorkspaceSettings">
     <artifacts-to-build>
-      <artifact name="MiniGame" />
+      <artifact name="MiniGame:jar" />
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0bea6f4a-c1e1-467d-adfb-7b7970f54f27" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/artifacts/MiniGame.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/MiniGame/MiniGame.jar" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/MiniGame/MiniGame.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MiniGame.iml" beforeDir="false" afterPath="$PROJECT_DIR$/MiniGame.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/MiniGame/MiniGame.jar" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/minigame/MiniGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/minigame/MiniGame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/minigame/test/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/minigame/test/Client.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/minigame/core/Util.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/minigame/core/Util.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/minigame/test/TestServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/minigame/test/TestServer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/minigame/ui/GameFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/minigame/ui/GameFrame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/minigame/ui/MusicPlayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/minigame/ui/MusicPlayer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/minigame/ui/WelcomePane.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/minigame/ui/panes/WelcomePane.java" afterDir="false" />
     </list>
-    <list id="2fe59900-6fe2-49cf-ae65-ba351ba664c6" name="Changes by YKJ6" comment="">
-      <change beforePath="$PROJECT_DIR$/src/minigame/ui/ChessUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/minigame/ui/ChessUI.java" afterDir="false" />
-    </list>
+    <list id="2fe59900-6fe2-49cf-ae65-ba351ba664c6" name="Changes by YKJ6" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -51,15 +51,20 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="Downloaded.Files.Path.Enabled" value="true" />
+    <property name="Repository.Attach.Annotations" value="false" />
+    <property name="Repository.Attach.JavaDocs" value="false" />
+    <property name="Repository.Attach.Sources" value="false" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="TODO_SCOPE" value="All Places" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="codeWithMe.voiceChat.enabledByDefault" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="project.structure.last.edited" value="Artifacts" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src" />
+    <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="preferences.JavaFX" />
   </component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
@@ -70,9 +75,16 @@
       <recent name="C:\Users\YKJ5\Documents\GitHub\MiniGame" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Server">
+  <component name="RunManager" selected="Application.JavaFX">
     <configuration name="Client" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="minigame.test.Client" />
+      <module name="MiniGame" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="JavaFX" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="minigame.App" />
       <module name="MiniGame" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -96,6 +108,7 @@
       <item itemvalue="Application.Server" />
       <item itemvalue="Application.Client" />
       <item itemvalue="Application.MiniGame" />
+      <item itemvalue="Application.JavaFX" />
     </list>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -129,6 +142,9 @@
       <workItem from="1677718153166" duration="1611000" />
       <workItem from="1677730164170" duration="3666000" />
       <workItem from="1677744959903" duration="2705000" />
+      <workItem from="1677804419798" duration="1671000" />
+      <workItem from="1677820216928" duration="1343000" />
+      <workItem from="1677833560559" duration="1043000" />
     </task>
     <servers />
   </component>
@@ -145,5 +161,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>

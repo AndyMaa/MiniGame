@@ -2,7 +2,7 @@ package minigame.ui;
 
 import minigame.core.Game;
 import minigame.core.event.listeners.SettingListener;
-import minigame.core.server.MainServer;
+import minigame.ui.panes.WelcomePane;
 
 import javax.swing.*;
 import java.awt.*;

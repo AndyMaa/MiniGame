@@ -1,9 +1,13 @@
 package minigame;
 
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import minigame.ui.GameFrame;
 import minigame.ui.MusicPlayer;
 
 import javax.swing.*;
+import java.io.IOException;
 
 public class MiniGame {
     public static void main(String[] args) {
@@ -15,6 +19,6 @@ public class MiniGame {
         }
 
         new GameFrame("MiniGame").setVisible(true);
-        MusicPlayer.playBackground();
+//        MusicPlayer.playBackground();
     }
 }

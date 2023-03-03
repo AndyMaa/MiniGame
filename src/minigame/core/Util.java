@@ -3,9 +3,9 @@ package minigame.core;
 import java.util.Arrays;
 
 public class Util {
-    private final static char[] charMap={'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z',
-        'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z','0', '1',
-    '2', '3', '4', '5', '6', '7', '8', '9'};
+    private final static char[] charMap={'a','b','c','d','e','f','g','h','i','j','k','m','n','o','p',
+            'q','r','s','t','u','v','w','x','y','z','A','B','C','D','E','F','G','H','I','J','K','L',
+            'M','N','P','Q','R','S','T','U','V','W','X','Y','Z','1','2','3','4','5','6','7','8','9'};
     /**
      *
      * @return 压缩后的字符串
@@ -17,6 +17,11 @@ public class Util {
         char[] rawOutPut=new char[9];
         //序列化ip
         for (int i=0;i<4;i++){
+            if (i<2&&childs[0].equals("192")&&childs[1].equals("168")){
+                rawOutPut[2]= ((char) (size - 1));
+                i=1;
+                continue;
+            }
             node=Integer.parseInt(childs[i]);
             //进位放标志位
             if (node>=size){
@@ -32,13 +37,17 @@ public class Util {
         }
         //序列化端口
         rawOutPut[6]= (char) (port/size/size);
-        rawOutPut[7]= (char) (port%(size*size)/size);
+        rawOutPut[7]= (char) ((port/size)%size);
         rawOutPut[8]= (char) (port%size);
         System.out.println(Arrays.toString(rawOutPut));
         for (int i=0;i<rawOutPut.length;i++){
             rawOutPut[i]=charMap[rawOutPut[i]];
         }
-        return new String(rawOutPut);
+        if (childs[0].equals("192")&&childs[1].equals("168")){
+            return new String(rawOutPut,2,7);
+        }else {
+            return new String(rawOutPut);
+        }
     }
 
     /**
@@ -48,14 +57,36 @@ public class Util {
      */
     public static Object[] unZipAddress(String zipped){
         char[] chars=zipped.toCharArray();
+        char a;
         int size= charMap.length;
-        int p1=chars[0]/10*size+chars[1];
-        int p2=chars[0]%10*size+chars[2];
-        int p3=chars[3]/10*size+chars[4];
-        int p4=chars[3]%10*size+chars[5];
+        for (int i=0;i<chars.length;i++){
+            a=chars[i];
+            for (int j=0;j<size;j++){
+                if (charMap[j]==a){
+                    chars[i]=(char) j;
+                    break;
+                }
+            }
+        }
+
+        int p1;
+        int p2;
+        int p3;
+        int p4;
+        if (chars[0]==size-1){
+            p1=192;
+            p2=168;
+            p3=chars[1]/10*size+chars[2];
+            p4=chars[1]%10*size+chars[3];
+        }else {
+            p1=chars[0]/10*size+chars[1];
+            p2=chars[0]%10*size+chars[2];
+            p3=chars[3]/10*size+chars[4];
+            p4=chars[3]%10*size+chars[5];
+        }
         Object[] out=new Object[2];
         out[0]=p1+"."+p2+"."+p3+"."+p4;
-        out[1]=chars[6]*size*size+chars[7]*size+chars[8];
+        out[1]=chars[chars.length-3]*size*size+chars[chars.length-2]*size+chars[chars.length-1];
         return out;
     }
 }
