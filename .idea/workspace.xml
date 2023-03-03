@@ -7,15 +7,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0bea6f4a-c1e1-467d-adfb-7b7970f54f27" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/MiniGame.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MiniGame.iml" beforeDir="false" afterPath="$PROJECT_DIR$/MiniGame.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/MiniGame/MiniGame.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/minigame/MiniGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/minigame/MiniGame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/minigame/core/Util.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/minigame/core/Util.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/minigame/test/TestServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/minigame/test/TestServer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/minigame/ui/GameFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/minigame/ui/GameFrame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/minigame/ui/WelcomePane.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/minigame/ui/panes/WelcomePane.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/minigame/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/minigame/App.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/res/fxml/test.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/res/fxml/test.fxml" afterDir="false" />
     </list>
     <list id="2fe59900-6fe2-49cf-ae65-ba351ba664c6" name="Changes by YKJ6" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -145,6 +139,7 @@
       <workItem from="1677804419798" duration="1671000" />
       <workItem from="1677820216928" duration="1343000" />
       <workItem from="1677833560559" duration="1043000" />
+      <workItem from="1677887039721" duration="574000" />
     </task>
     <servers />
   </component>

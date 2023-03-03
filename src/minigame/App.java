@@ -9,8 +9,8 @@ import javafx.stage.Stage;
 public class App extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Parent root= FXMLLoader.load(MiniGame.class.getClassLoader().getResource("res/fxml/Entry.fxml"));
-        primaryStage.setTitle("Course Registration System");
+        Parent root= FXMLLoader.load(MiniGame.class.getClassLoader().getResource("res/fxml/test.fxml"));
+        primaryStage.setTitle("MiniGame");
         primaryStage.setScene(new Scene(root, 800, 600));
         primaryStage.show();
     }
