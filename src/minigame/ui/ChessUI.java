@@ -20,7 +20,11 @@ public final class ChessUI extends JPanel implements ComponentListener, MouseMot
     public static ChessUI instance;
     private Chess chess;
     public ChessUI(){
-        super();
+        this(null);
+    }
+    private ChessUIAdapter adapter;
+    public ChessUI(ChessUIAdapter adapter){
+        this.adapter=adapter;
         instance=this;
         addComponentListener(this);
         addMouseMotionListener(this);
