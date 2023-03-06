@@ -11,11 +11,15 @@ import javafx.stage.Stage;
 import minigame.core.Game;
 import minigame.core.ai.NormalAI;
 import minigame.core.players.AIPlayer;
+import minigame.core.server.GhostServer;
 import minigame.core.server.LocalServer;
+import minigame.core.server.MainServer;
 import minigame.core.server.Server;
 import minigame.ui.ChessUI;
 import minigame.ui.ChessUIAdapter;
 import minigame.ui.GameFrame;
+
+import javax.swing.*;
 
 public class App extends Application {
     public Button aiButton;
@@ -87,6 +91,28 @@ public class App extends Application {
             stage.setScene(gameScene);
 //            GameFrame.instance.setMode("game");
             System.out.println("ai mode");
+        });
+        localButton.setOnMouseClicked(event -> {
+
+        });
+        createButton.setOnMouseClicked(event -> {
+            Server server=new MainServer(10);
+            Game.setServer(server);
+            ChessUI.instance.setChess(server.getChess());
+            Game.thePlayer.join(server);
+            stage.setScene(gameScene);
+            System.out.println("Create!");
+        });
+        joinButton.setOnMouseClicked(event -> {
+            String get= JOptionPane.showInputDialog("请输入ip和端口:");
+            String[] result=get.split(":");
+            String ip=result[0];
+            String p=result[1];
+            int port=Integer.parseInt(p);
+            GhostServer ghost=new GhostServer(ip, port);
+            Game.setServer(ghost);
+            Game.thePlayer.join(ghost);
+            System.out.println("join");
         });
     }
     public static void main(String[] args) {
