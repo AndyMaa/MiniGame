@@ -10,6 +10,7 @@ import java.awt.event.ActionListener;
  * 监听开始按钮
  */
 
+@Deprecated
 public class StartListener implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {

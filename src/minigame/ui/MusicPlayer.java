@@ -1,8 +1,6 @@
 package minigame.ui;
 
 import javax.sound.sampled.*;
-import java.applet.Applet;
-import java.applet.AudioClip;
 import java.io.*;
 
 public class MusicPlayer {

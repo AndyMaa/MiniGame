@@ -7,6 +7,7 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+@Deprecated
 public class TipListener implements ActionListener {
     private int count=0;
     @Override

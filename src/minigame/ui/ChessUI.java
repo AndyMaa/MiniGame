@@ -1,10 +1,8 @@
 package minigame.ui;
 
-import com.sun.istack.internal.NotNull;
 import minigame.core.Chess;
 import minigame.core.Game;
 import minigame.core.event.listeners.CreateServerListener;
-import minigame.core.server.MainServer;
 import minigame.ui.buttons.More;
 
 import javax.swing.*;

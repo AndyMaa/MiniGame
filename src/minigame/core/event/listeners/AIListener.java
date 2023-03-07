@@ -11,6 +11,7 @@ import minigame.ui.GameFrame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+@Deprecated
 public class AIListener implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {

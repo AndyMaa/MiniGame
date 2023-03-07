@@ -8,6 +8,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+@Deprecated
 public class SettingListener implements ActionListener{
     public static JButton claim=new JButton("确定");
     public static JFrame setting=new JFrame("Settings");

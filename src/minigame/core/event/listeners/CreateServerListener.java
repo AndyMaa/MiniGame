@@ -8,6 +8,7 @@ import minigame.ui.GameFrame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+@Deprecated
 public class CreateServerListener implements ActionListener {
     public static String ip;
     public static int port;

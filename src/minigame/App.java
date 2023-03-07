@@ -1,16 +1,17 @@
 package minigame;
 
 import javafx.application.Application;
+import javafx.beans.value.ChangeListener;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.DialogPane;
+import javafx.scene.control.RadioButton;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -21,9 +22,9 @@ import minigame.core.server.GhostServer;
 import minigame.core.server.LocalServer;
 import minigame.core.server.MainServer;
 import minigame.core.server.Server;
-import minigame.ui.ChessUI;
 import minigame.ui.FXChessUI;
 import minigame.ui.GameFrame;
+import minigame.ui.MusicPlayer;
 
 import javax.swing.*;
 import java.io.IOException;
@@ -46,6 +47,7 @@ public final class App extends Application {
     public final Scene rootScene;
     public final Scene gameScene;
     private Stage stage;
+    //private final ToggleGroup group=new ToggleGroup();
 
     public App() throws IOException {
         Parent root= FXMLLoader.load(MiniGame.class.getClassLoader().getResource("res/fxml/test.fxml"));
@@ -119,7 +121,7 @@ public final class App extends Application {
         getNodeById("button$create").setOnMouseClicked(event -> {
             Server server=new MainServer(10);
             Game.setServer(server);
-            ChessUI.instance.setChess(server.getChess());
+            FXChessUI.instance.setChess(server.getChess());
             Game.thePlayer.join(server);
             stage.setScene(gameScene);
             System.out.println("Create!");
@@ -150,7 +152,10 @@ public final class App extends Application {
             else JOptionPane.showInputDialog("您的试用次数已结束!请充值");
             count+=1;
         });
-        getNodeById("button$exit").setOnMouseClicked(event -> GameFrame.instance.setMode("welcome"));
+        getNodeById("button$exit").setOnMouseClicked(event -> stage.setScene(rootScene));  //返回主页面
+        getNodeById("button$radio").setOnMouseClicked(event -> MusicPlayer.playBackground());  //播放音乐
+        //RadioButton rb =(RadioButton) getNodeById("button$radio");
+        //if (rb.isSelected()) getNodeById("button$exit").setOnMouseClicked(event -> MusicPlayer.playBackground());
     }
 
     /**
@@ -163,32 +168,16 @@ public final class App extends Application {
         Button join=(Button) getNodeById("button$join");
         Button local=(Button) getNodeById("button$local");
         //当鼠标进入按钮时添加阴影特效
-        ai.addEventHandler(MouseEvent.MOUSE_ENTERED, (MouseEvent e) -> {
-            ai.setEffect(shadow);
-        });
-        create.addEventHandler(MouseEvent.MOUSE_ENTERED, (MouseEvent e) -> {
-            create.setEffect(shadow);
-        });
-        join.addEventHandler(MouseEvent.MOUSE_ENTERED, (MouseEvent e) -> {
-            join.setEffect(shadow);
-        });
-        local.addEventHandler(MouseEvent.MOUSE_ENTERED, (MouseEvent e) -> {
-            local.setEffect(shadow);
-        });
+        ai.addEventHandler(MouseEvent.MOUSE_ENTERED, (MouseEvent e) -> ai.setEffect(shadow));
+        create.addEventHandler(MouseEvent.MOUSE_ENTERED, (MouseEvent e) -> create.setEffect(shadow));
+        join.addEventHandler(MouseEvent.MOUSE_ENTERED, (MouseEvent e) -> join.setEffect(shadow));
+        local.addEventHandler(MouseEvent.MOUSE_ENTERED, (MouseEvent e) -> local.setEffect(shadow));
 
         //当鼠标离开按钮时移除阴影效果
-        ai.addEventHandler(MouseEvent.MOUSE_EXITED, (MouseEvent e) -> {
-            ai.setEffect(null);
-        });
-        create.addEventHandler(MouseEvent.MOUSE_EXITED, (MouseEvent e) -> {
-            create.setEffect(null);
-        });
-        join.addEventHandler(MouseEvent.MOUSE_EXITED, (MouseEvent e) -> {
-            join.setEffect(null);
-        });
-        local.addEventHandler(MouseEvent.MOUSE_EXITED, (MouseEvent e) -> {
-            local.setEffect(null);
-        });
+        ai.addEventHandler(MouseEvent.MOUSE_EXITED, (MouseEvent e) -> ai.setEffect(null));
+        create.addEventHandler(MouseEvent.MOUSE_EXITED, (MouseEvent e) -> create.setEffect(null));
+        join.addEventHandler(MouseEvent.MOUSE_EXITED, (MouseEvent e) -> join.setEffect(null));
+        local.addEventHandler(MouseEvent.MOUSE_EXITED, (MouseEvent e) -> local.setEffect(null));
     }
     public static void main(String[] args) {
         launch(args);
