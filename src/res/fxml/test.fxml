@@ -37,13 +37,12 @@
          </font>
       </Label>
       <Accordion layoutX="256.0" layoutY="136.0" />
-      <VBox prefHeight="200.0" prefWidth="100.0" />
       <VBox alignment="CENTER" layoutX="229.0" layoutY="136.0" prefHeight="200.0" prefWidth="141.0" spacing="20.0">
          <children>
-          <Button mnemonicParsing="false" prefWidth="141.0" text="玩家 VS AI" />
-            <Button mnemonicParsing="false" prefHeight="23.0" prefWidth="141.0" text="玩家 VS 玩家" />
-            <Button mnemonicParsing="false" prefHeight="23.0" prefWidth="141.0" text="创建服务器" />
-            <Button mnemonicParsing="false" prefHeight="23.0" prefWidth="141.0" text="加入服务器" />
+          <Button fx:id="button$ai" mnemonicParsing="false" prefWidth="141.0" text="玩家 VS AI" />
+            <Button fx:id="button$local" mnemonicParsing="false" prefHeight="23.0" prefWidth="141.0" text="玩家 VS 玩家" />
+            <Button fx:id="button$create" mnemonicParsing="false" prefHeight="23.0" prefWidth="141.0" text="创建服务器" />
+            <Button fx:id="button$join" mnemonicParsing="false" prefHeight="23.0" prefWidth="141.0" text="加入服务器" />
          </children>
       </VBox>
    </children>

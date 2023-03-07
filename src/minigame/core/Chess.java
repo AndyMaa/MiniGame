@@ -1,5 +1,6 @@
 package minigame.core;
 
+import minigame.ui.CanRepaint;
 import minigame.ui.ChessUI;
 
 import java.io.Serializable;
@@ -23,8 +24,8 @@ public final class Chess implements Serializable {
      * 一个ChessUI的指针，当数据变化时调用repaint
      * 在ChessUI.setChess中会自动绑定
      */
-    private transient ChessUI ui;
-    public void setUI(ChessUI ui){
+    private transient CanRepaint ui;
+    public void setUI(CanRepaint ui){
         this.ui=ui;
     }
 

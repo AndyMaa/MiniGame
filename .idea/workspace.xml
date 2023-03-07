@@ -11,9 +11,11 @@
   <component name="ChangeListManager">
     <list default="true" id="0bea6f4a-c1e1-467d-adfb-7b7970f54f27" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MiniGame/res/fxml/test.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MiniGame/res/fxml/test.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/minigame/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/minigame/App.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/minigame/core/Chess.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/minigame/core/Chess.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/minigame/ui/ChessUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/minigame/ui/ChessUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/minigame/ui/ChessUIAdapter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/minigame/ui/Renderer.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/res/fxml/test.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/res/fxml/test.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -27,9 +29,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Interface" />
         <option value="FxmlFile" />
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -151,6 +153,9 @@
       <workItem from="1677887039721" duration="574000" />
       <workItem from="1678076394651" duration="778000" />
       <workItem from="1678090539610" duration="2553000" />
+      <workItem from="1678162778808" duration="1409000" />
+      <workItem from="1678170336990" duration="546000" />
+      <workItem from="1678176998506" duration="4162000" />
     </task>
     <servers />
   </component>

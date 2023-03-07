@@ -14,17 +14,13 @@ import java.awt.event.*;
 /**
  * 渲染一个Chess
  */
-public final class ChessUI extends JPanel implements ComponentListener, MouseMotionListener, MouseListener {
+public final class ChessUI extends JPanel implements CanRepaint,ComponentListener, MouseMotionListener, MouseListener {
     public static JLabel ip=new JLabel("ip:"+CreateServerListener.ip);
     public static JLabel port=new JLabel("端口:"+CreateServerListener.port);
     public static ChessUI instance;
     private Chess chess;
+
     public ChessUI(){
-        this(null);
-    }
-    private ChessUIAdapter adapter;
-    public ChessUI(ChessUIAdapter adapter){
-        this.adapter=adapter;
         instance=this;
         addComponentListener(this);
         addMouseMotionListener(this);

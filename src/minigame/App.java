@@ -2,11 +2,14 @@ package minigame;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import minigame.core.Game;
 import minigame.core.ai.NormalAI;
@@ -16,86 +19,95 @@ import minigame.core.server.LocalServer;
 import minigame.core.server.MainServer;
 import minigame.core.server.Server;
 import minigame.ui.ChessUI;
-import minigame.ui.ChessUIAdapter;
-import minigame.ui.GameFrame;
+import minigame.ui.FXChessUI;
 
 import javax.swing.*;
+import java.io.IOException;
+import java.util.HashMap;
 
-public class App extends Application {
-    public Button aiButton;
-    public Button localButton;
-    public Button joinButton;
-    public Button createButton;
+public final class App extends Application {
+    public static final HashMap<String, Node> map=new HashMap<>();
 
-    public Scene rootScene;
-    public Scene gameScene;
+    /**
+     * 通过Id获取组件
+     */
+    public static Node getNodeById(String id){
+        return map.get(id);
+    }
+
+    public final Scene rootScene;
+    public final Scene gameScene;
     private Stage stage;
-    @Override
-    public void start(Stage primaryStage) throws Exception {
-        stage=primaryStage;
+
+    public App() throws IOException {
         Parent root= FXMLLoader.load(MiniGame.class.getClassLoader().getResource("res/fxml/test.fxml"));
 
-        //通过文本获取按钮
-        findButton(root);
-
+        //注册id
+        regNodes(root);
         registerHandles();
+
+        rootScene =new Scene(root);
+        gameScene=new Scene(createGamePane());
+    }
+    @Override
+    public void start(Stage primaryStage) {
+        stage=primaryStage;
         primaryStage.setTitle("MiniGame");
-        rootScene =new Scene(root, 800, 600);
-        gameScene=new Scene(createGamePane(),600,600);
         primaryStage.setScene(rootScene);
         primaryStage.setResizable(false);
         primaryStage.show();
     }
-    private Parent createGamePane(){
-        AnchorPane pane=new AnchorPane();
-        pane.getChildren().add(new ChessUIAdapter());
-        return pane;
+    private Parent createGamePane() {
+        VBox vBox=new VBox();
+        vBox.setPrefSize(550,600);
+        vBox.setAlignment(Pos.CENTER);
+        HBox box=new HBox();
+        box.setAlignment(Pos.CENTER);
+        box.setPrefSize(281,45);
+        box.setSpacing(20);
+        box.setLayoutX(134);
+        box.setLayoutY(14);
+        Button b1=new Button("提示");
+        map.put("button$tip",b1);
+        box.getChildren().add(b1);
+        b1=new Button("退出");
+        box.getChildren().add(b1);
+        map.put("button$exit",b1);
+
+        vBox.getChildren().add(box);
+        vBox.getChildren().add(new FXChessUI());
+        return vBox;
     }
 
     /**
      * 递归找按钮
      */
-    private void findButton(Parent parent){
-        Button b;
-        for (Node node:parent.getChildrenUnmodifiable()){
-            if (node instanceof Button){
-                b= ((Button) node);
-                switch (b.getText()){
-                    case "玩家 VS AI":
-                        aiButton=b;
-                        break;
-                    case "玩家 VS 玩家":
-                        localButton=b;
-                        break;
-                    case "创建服务器":
-                        createButton=b;
-                        break;
-                    case "加入服务器":
-                        joinButton=b;
-                        break;
-                }
-            }else if (node instanceof Parent){
-                findButton(((Parent) node));
+    private void regNodes(Parent parent){
+        for (Node node:parent.getChildrenUnmodifiable()) {
+            if (node instanceof Parent) {
+                regNodes(((Parent) node));
+            }
+            if (node.getId() != null) {
+                map.put(node.getId(), node);
             }
         }
     }
 
     private void registerHandles(){
-        aiButton.setOnMouseClicked(event -> {
+        getNodeById("button$ai").setOnMouseClicked(event -> {
             Server server=new LocalServer(10);
             Game.setServer(server);
-            ChessUI.instance.setChess(server.getChess());
+            FXChessUI.instance.setChess(server.getChess());
             Game.thePlayer.join(server);
             AIPlayer ai=new AIPlayer(new NormalAI());
             ai.join(server);
             stage.setScene(gameScene);
-//            GameFrame.instance.setMode("game");
             System.out.println("ai mode");
         });
-        localButton.setOnMouseClicked(event -> {
+        getNodeById("button$local").setOnMouseClicked(event -> {
 
         });
-        createButton.setOnMouseClicked(event -> {
+        getNodeById("button$create").setOnMouseClicked(event -> {
             Server server=new MainServer(10);
             Game.setServer(server);
             ChessUI.instance.setChess(server.getChess());
@@ -103,7 +115,7 @@ public class App extends Application {
             stage.setScene(gameScene);
             System.out.println("Create!");
         });
-        joinButton.setOnMouseClicked(event -> {
+        getNodeById("button$join").setOnMouseClicked(event -> {
             String get= JOptionPane.showInputDialog("请输入ip和端口:");
             String[] result=get.split(":");
             String ip=result[0];
