@@ -20,4 +20,10 @@ public abstract class AbstractPlayer implements Player{
     public int getId() {
         return id;
     }
+
+    @Override
+    public void logout() {
+        setId(0);
+        server=null;
+    }
 }

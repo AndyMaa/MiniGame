@@ -1,47 +1,56 @@
 package minigame;
 
 import javafx.application.Application;
-import javafx.beans.value.ChangeListener;
+import javafx.event.EventTarget;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.*;
 import javafx.scene.effect.DropShadow;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import minigame.core.Game;
+import minigame.core.Util;
 import minigame.core.ai.NormalAI;
 import minigame.core.players.AIPlayer;
+import minigame.core.players.LocalPlayer;
 import minigame.core.server.GhostServer;
 import minigame.core.server.LocalServer;
 import minigame.core.server.MainServer;
 import minigame.core.server.Server;
 import minigame.ui.FXChessUI;
-import minigame.ui.GameFrame;
+import minigame.ui.Gui;
 import minigame.ui.MusicPlayer;
 
 import javax.swing.*;
 import java.io.IOException;
+import java.net.URL;
 import java.util.HashMap;
 
 public final class App extends Application {
     /**
      * 一个哈希表,相当于组件库,方便取用
      */
-    public static final HashMap<String, Node> map=new HashMap<>();
+    public static final HashMap<String, EventTarget> map=new HashMap<>();
 
     private int count=0;
     /**
      * 通过Id获取组件
      */
     public static Node getNodeById(String id){
-        return map.get(id);
+        return (Node) map.get(id);
+    }
+    public static MenuItem getMenuById(String id){
+        return (MenuItem) map.get(id);
+    }
+    private static URL getUrl(String path){
+        return App.class.getClassLoader().getResource(path);
     }
 
     public final Scene rootScene;
@@ -50,7 +59,7 @@ public final class App extends Application {
     //private final ToggleGroup group=new ToggleGroup();
 
     public App() throws IOException {
-        Parent root= FXMLLoader.load(MiniGame.class.getClassLoader().getResource("res/fxml/test.fxml"));
+        Parent root= FXMLLoader.load(getUrl("res/fxml/test.fxml"));
         //注册id
         regNodes(root);
         rootScene =new Scene(root);
@@ -59,12 +68,14 @@ public final class App extends Application {
         look();
     }
     @Override
-    public void start(Stage primaryStage) {
+    public void start(Stage primaryStage) throws IOException {
         stage=primaryStage;
+        primaryStage.getIcons().add(new Image(getUrl("res/img/icon.png").openStream()));
         primaryStage.setTitle("MiniGame");
         primaryStage.setScene(rootScene);
         primaryStage.setResizable(false);
         primaryStage.show();
+        primaryStage.addEventHandler(WindowEvent.WINDOW_HIDDEN,event -> System.exit(0));
     }
     private Parent createGamePane() {
         VBox vBox=new VBox();
@@ -96,7 +107,18 @@ public final class App extends Application {
     private void regNodes(Parent parent){
         for (Node node:parent.getChildrenUnmodifiable()) {
             if (node instanceof Parent) {
-                regNodes(((Parent) node));
+                if (node instanceof MenuBar){
+                    MenuBar m = (MenuBar) node;
+                    for (Menu menu:m.getMenus()){
+                        for (MenuItem item:menu.getItems()){
+                            if (item.getId()!=null){
+                                map.put(item.getId(),item);
+                            }
+                        }
+                    }
+                }else {
+                    regNodes(((Parent) node));
+                }
             }
             if (node.getId() != null) {
                 map.put(node.getId(), node);
@@ -106,7 +128,7 @@ public final class App extends Application {
 
     private void registerHandles(){
         getNodeById("button$ai").setOnMouseClicked(event -> {
-            Server server=new LocalServer(10);
+            Server server=new LocalServer(Game.size);
             Game.setServer(server);
             FXChessUI.instance.setChess(server.getChess());
             Game.thePlayer.join(server);
@@ -116,26 +138,35 @@ public final class App extends Application {
             System.out.println("ai mode");
         });
         getNodeById("button$local").setOnMouseClicked(event -> {
-            //TODO
+            Server server=new LocalServer(Game.size);
+            Game.setServer(server);
+            FXChessUI.instance.setChess(server.getChess());
+            Game.thePlayer.join(server);
+            new LocalPlayer().join(server);
+            stage.setScene(gameScene);
         });
         getNodeById("button$create").setOnMouseClicked(event -> {
-            Server server=new MainServer(10);
+            MainServer server=new MainServer(10);
             Game.setServer(server);
             FXChessUI.instance.setChess(server.getChess());
             Game.thePlayer.join(server);
             stage.setScene(gameScene);
-            System.out.println("Create!");
         });
         getNodeById("button$join").setOnMouseClicked(event -> {
-            String get= JOptionPane.showInputDialog("请输入ip和端口:");
-            String[] result=get.split(":");
-            String ip=result[0];
-            String p=result[1];
-            int port=Integer.parseInt(p);
-            GhostServer ghost=new GhostServer(ip, port);
-            Game.setServer(ghost);
-            Game.thePlayer.join(ghost);
-            System.out.println("join");
+            String get= Gui.input("请输入邀请码：");
+            if (get==null||get.equals("")) return;
+            try {
+                Object[] result=Util.unZipAddress(get);
+                GhostServer ghost=new GhostServer(((String) result[0]), ((Integer) result[1]));
+                Game.setServer(ghost);
+                Game.thePlayer.join(ghost);
+                System.out.println("join");
+                stage.setScene(gameScene);
+            }catch (IllegalArgumentException e){
+                Gui.info("无效的邀请码！");
+            }catch (IOException ioE){
+                Gui.info("无法连接至服务器");
+            }
         });
         getNodeById("button$tip").setOnMouseClicked(event -> {
             NormalAI normalAI=new NormalAI();
@@ -145,17 +176,44 @@ public final class App extends Application {
                     int p1=pos[0]+1;
                     int p2=-pos[1]-1;
                     //真实坐标(左上角0,0)
-
                     JOptionPane.showMessageDialog(null,"AI建议你下"+p1+", "+ p2);
                 }
             }
             else JOptionPane.showInputDialog("您的试用次数已结束!请充值");
             count+=1;
         });
-        getNodeById("button$exit").setOnMouseClicked(event -> stage.setScene(rootScene));  //返回主页面
-        getNodeById("button$radio").setOnMouseClicked(event -> MusicPlayer.playBackground());  //播放音乐
-        //RadioButton rb =(RadioButton) getNodeById("button$radio");
-        //if (rb.isSelected()) getNodeById("button$exit").setOnMouseClicked(event -> MusicPlayer.playBackground());
+        getNodeById("button$exit").setOnMouseClicked(event -> {
+            stage.setScene(rootScene);
+            Game.exit();
+        });  //返回主页面
+        getNodeById("button$radio").setOnMouseClicked(event -> {
+            RadioButton radioButton= ((RadioButton) getNodeById("button$radio"));
+            if (radioButton.isSelected()){
+                MusicPlayer.playBackground();
+            }else {
+                MusicPlayer.stopBgm();
+            }
+        });
+        getMenuById("menu$resize").setOnAction(event -> {
+            String input=Gui.input("请输入棋盘大小：（偶数）（4-20）\n当前棋盘大小："+Game.size);
+            if (input==null) return;
+            int size;
+            try {
+                size=Integer.parseInt(input);
+            }catch (NumberFormatException e){
+                Gui.info("请输入一个数字！");
+                return;
+            }
+            if (size%2==1){
+                Gui.info("请输入一个偶数！");
+                return;
+            }
+            if (size<4||size>20){
+                Gui.info("请输入一个4-20间的数");
+                return;
+            }
+            Game.size=size;
+        });
     }
 
     /**

@@ -1,10 +1,12 @@
 package minigame.core.server;
 
+import javafx.application.Platform;
 import minigame.core.Chess;
 import minigame.core.net.Connection;
 import minigame.core.net.Packet;
 import minigame.core.net.StepPacket;
 import minigame.core.players.Player;
+import minigame.ui.Gui;
 
 import java.io.IOException;
 import java.net.Socket;
@@ -83,6 +85,10 @@ public abstract class RemoteServer implements Runnable, Server {
     }
     @Override
     public void step(Player player, int x, int y) {
+        if (!online){
+            Gui.info("请等待玩家加入！或网络连接已断开");
+            return;
+        }
         chess.set(x,y,player.getId());
         turn=3-player.getId();
         if (online){

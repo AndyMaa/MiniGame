@@ -12,7 +12,7 @@ public interface Player {
      */
     void step(int x, int y);
     void join(Server server);
-
+    void logout();
     /**
      * 设置玩家棋子的id
      */

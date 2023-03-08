@@ -5,8 +5,7 @@ import minigame.core.net.InitPacket;
 import minigame.core.net.Packet;
 import minigame.core.net.StepPacket;
 import minigame.core.players.Player;
-import minigame.ui.ChessUI;
-import minigame.ui.GameFrame;
+import minigame.ui.FXChessUI;
 
 import java.io.IOException;
 import java.net.Socket;
@@ -17,16 +16,12 @@ import java.net.Socket;
 public final class GhostServer extends RemoteServer {
     private int playerId = 0;
 
-    public GhostServer(String ip, int port) {
-        try {
-            Socket socket = new Socket(ip, port);
-            this.socket = socket;
-            connection = new Connection(socket);
-            online = true;
-            startListen();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    public GhostServer(String ip, int port) throws IOException{
+        Socket socket = new Socket(ip, port);
+        this.socket = socket;
+        connection = new Connection(socket);
+        online = true;
+        startListen();
     }
 
     @Override
@@ -51,8 +46,7 @@ public final class GhostServer extends RemoteServer {
                 player.setId(initPacket.yourId);
             }
             chess = initPacket.chess;
-            ChessUI.instance.setChess(chess);
-            GameFrame.instance.setMode("game");
+            FXChessUI.instance.setChess(chess);
         }
     }
 }

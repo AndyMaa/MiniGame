@@ -1,6 +1,7 @@
 package minigame.core.players;
 
 import minigame.core.ai.AI;
+import minigame.ui.Gui;
 
 import javax.swing.*;
 
@@ -20,7 +21,7 @@ public final class AIPlayer extends AbstractPlayer {
 //        long t0=System.currentTimeMillis();
         int[] result = ai.nextStep(server.getChess(), id);
         if (result==null){
-            JOptionPane.showMessageDialog(null,"AI已经无棋可走了！棋盘上棋子多的人获胜");
+            Gui.info("AI已经无棋可走了！棋盘上棋子多的人获胜");
             return;
         }
 //        long time=System.currentTimeMillis()-t0;

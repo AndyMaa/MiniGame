@@ -43,6 +43,9 @@ public final class LocalServer implements Server{
             player.setId(3-p1.getId());
             playerOnly=p1 instanceof LocalPlayer&&p2 instanceof LocalPlayer;
         }
+        if (playerOnly){
+            Game.thePlayer=p1.getId()==1?p1:p2;
+        }
     }
 
     @Override

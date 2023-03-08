@@ -11,7 +11,7 @@ import javafx.scene.paint.Color;
 import minigame.core.Chess;
 import minigame.core.Game;
 
-public class FXChessUI extends Canvas implements CanRepaint {
+public class FXChessUI extends Canvas{
     public static FXChessUI instance;
     public static final int SIZE=500;//像素大小
 
@@ -28,7 +28,6 @@ public class FXChessUI extends Canvas implements CanRepaint {
             repaint();
         });
         addEventHandler(MouseEvent.MOUSE_PRESSED,event -> {
-            System.out.println("press");
             int newX=toBlockX(((int) event.getX()));
             int newY=toBlockY(((int) event.getY()));
             pressX=newX>=chess.size||newX<0?-1:newX;
@@ -36,7 +35,6 @@ public class FXChessUI extends Canvas implements CanRepaint {
             repaint();
         });
         addEventHandler(MouseEvent.MOUSE_RELEASED,event -> {
-            System.out.println("rel");
             if (toBlockX(((int) event.getX()))==pressX&&toBlockY(((int) event.getY()))==pressY&&pressX!=-1&&pressY!=-1){
                 Game.thePlayer.step(pressX,pressY);
             }
@@ -50,6 +48,7 @@ public class FXChessUI extends Canvas implements CanRepaint {
         this.chess=chess;
         blockSize= (int) (getWidth()/chess.size);
         chess.setUI(this);
+        repaint();
     }
     /**
      * 像素点到格点坐标的转换

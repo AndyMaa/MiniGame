@@ -6,6 +6,7 @@ import java.io.*;
 public class MusicPlayer {
     private static byte[] music=null;
     private static AudioFormat format;
+    private static Thread bgmThread;
     public static void playBackground(){
         if (music==null){
             try {
@@ -21,30 +22,29 @@ public class MusicPlayer {
                 e.printStackTrace();
             }
         }
-        new Thread(()->{
+
+        bgmThread=new Thread(()->{
             SourceDataLine sd;
             DataLine.Info info=new DataLine.Info(SourceDataLine.class,format);
             try {
                 sd= ((SourceDataLine) AudioSystem.getLine(info));
-                sd.open(format, 128000);
-//            if (sd.isControlSupported(FloatControl.Type.MASTER_GAIN)) {
-//                FloatControl volume = (FloatControl) sd.getControl(FloatControl.Type.MASTER_GAIN);
-//                volume.setValue((float) (volume.getMaximum()*0.01));
-//            }
+                sd.open(format, 48000);
             } catch (LineUnavailableException e) {
                 e.printStackTrace();
                 return;
             }
             int buffSize= sd.getBufferSize();
-            System.out.println("real buff size is "+buffSize);
             byte[] data=music;
             int pos=0,max= data.length;
             sd.start();
-            while (pos<max-buffSize){
+            while (pos<max-buffSize&&bgmThread!=null){
                 sd.write(data,pos, buffSize);
                 pos+=buffSize;
             }
-            System.out.println("end");
-        }).start();
+        });
+        bgmThread.start();
+    }
+    public static void stopBgm(){
+        bgmThread=null;
     }
 }

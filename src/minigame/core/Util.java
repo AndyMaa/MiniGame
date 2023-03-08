@@ -55,38 +55,39 @@ public class Util {
      * @param zipped
      * @return 第一个是String ip，第二个是Integer port
      */
-    public static Object[] unZipAddress(String zipped){
-        char[] chars=zipped.toCharArray();
-        char a;
-        int size= charMap.length;
-        for (int i=0;i<chars.length;i++){
-            a=chars[i];
-            for (int j=0;j<size;j++){
-                if (charMap[j]==a){
-                    chars[i]=(char) j;
-                    break;
+    public static Object[] unZipAddress(String zipped) throws IllegalArgumentException{
+        try {
+            char[] chars=zipped.toCharArray();
+            char a;
+            int size= charMap.length;
+            for (int i=0;i<chars.length;i++){
+                a=chars[i];
+                for (int j=0;j<size;j++){
+                    if (charMap[j]==a){
+                        chars[i]=(char) j;
+                        break;
+                    }
                 }
             }
-        }
 
-        int p1;
-        int p2;
-        int p3;
-        int p4;
-        if (chars[0]==size-1){
-            p1=192;
-            p2=168;
-            p3=chars[1]/10*size+chars[2];
-            p4=chars[1]%10*size+chars[3];
-        }else {
-            p1=chars[0]/10*size+chars[1];
-            p2=chars[0]%10*size+chars[2];
-            p3=chars[3]/10*size+chars[4];
-            p4=chars[3]%10*size+chars[5];
+            int p1,p2,p3,p4;
+            if (chars[0]==size-1){
+                p1=192;
+                p2=168;
+                p3=chars[1]/10*size+chars[2];
+                p4=chars[1]%10*size+chars[3];
+            }else {
+                p1=chars[0]/10*size+chars[1];
+                p2=chars[0]%10*size+chars[2];
+                p3=chars[3]/10*size+chars[4];
+                p4=chars[3]%10*size+chars[5];
+            }
+            Object[] out=new Object[2];
+            out[0]=p1+"."+p2+"."+p3+"."+p4;
+            out[1]=chars[chars.length-3]*size*size+chars[chars.length-2]*size+chars[chars.length-1];
+            return out;
+        }catch (Exception e){
+            throw new IllegalArgumentException();
         }
-        Object[] out=new Object[2];
-        out[0]=p1+"."+p2+"."+p3+"."+p4;
-        out[1]=chars[chars.length-3]*size*size+chars[chars.length-2]*size+chars[chars.length-1];
-        return out;
     }
 }

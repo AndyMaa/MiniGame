@@ -3,9 +3,9 @@ package minigame.core;
 import minigame.core.players.LocalPlayer;
 import minigame.core.players.Player;
 import minigame.core.server.LocalServer;
-import minigame.core.server.MainServer;
+import minigame.core.server.RemoteServer;
 import minigame.core.server.Server;
-import minigame.ui.ChessUI;
+import minigame.ui.FXChessUI;
 
 public final class Game {
     /**
@@ -18,33 +18,21 @@ public final class Game {
     private static Server server;
     public static int size=10;
 
-    //检测游戏是否在运行
-    public static boolean isRunning;
-
-    public static void start(){
-        Server server=new LocalServer(size);
-        Game.setServer(server);
-        ChessUI.instance.setChess(server.getChess());
-        thePlayer.join(server);
-//        if (WelcomePane.AI.isSelected()){
-//            new AIPlayer(new NoobAI()).join(server);
-//            System.out.println("ai mode");
-//        }else if (WelcomePane.NATIVE.isSelected()){
-//            new LocalPlayer().join(server);
-//        }else if (WelcomePane.NETWORK.isSelected()){
-//            new RemotePlayer().join(server);
-//        }
-//        new AIPlayer().jo
-    }
-
     public static Server getServer() {
         return server;
     }
 
     public static void setServer(Server server) {
-        if (Game.server instanceof MainServer){
-            ((MainServer) Game.server).close();
+        if (Game.server instanceof RemoteServer){
+            ((RemoteServer) Game.server).close();
         }
         Game.server = server;
+    }
+    public static void exit(){
+        thePlayer.logout();
+        if (Game.server instanceof RemoteServer){
+            ((RemoteServer) Game.server).close();
+        }
+        Game.server=null;
     }
 }

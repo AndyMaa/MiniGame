@@ -1,14 +1,18 @@
 package minigame.core.server;
 
 import minigame.core.Chess;
+import minigame.core.Util;
 import minigame.core.net.Connection;
 import minigame.core.net.InitPacket;
 import minigame.core.net.Packet;
 import minigame.core.net.StepPacket;
 import minigame.core.players.Player;
+import minigame.ui.Gui;
 
 import java.io.IOException;
+import java.net.InetAddress;
 import java.net.ServerSocket;
+import java.net.UnknownHostException;
 
 /**
  * 真正的服务器
@@ -26,30 +30,37 @@ public final class MainServer extends RemoteServer{
             @Override
             public void run() {
                 try {
-                    serverS = new ServerSocket(53242);
-                } catch (IOException e) {
-                    e.printStackTrace();
+                    serverS = new ServerSocket(0);
+                    port = serverS.getLocalPort();
+                    ip = InetAddress.getLocalHost().getHostAddress();
+                } catch (UnknownHostException e) {
+                    Gui.info("无法获取本机IP");
+                    return;
+                }catch (IOException e) {
+                    Gui.info("无法启动服务器");
                     return;
                 }
-                port = serverS.getLocalPort();
-                ip = serverS.getInetAddress().getHostAddress();
+                Gui.info("创建服务器成功！\n邀请码："+Util.zipAddress(ip,port));
                 System.out.println("socket start at " + serverS.getLocalPort());
                 while (socket == null) {
+                    if (serverS==null) return;
                     try {
                         socket = serverS.accept();
                     } catch (IOException e) {
                         socket = null;
-                        e.printStackTrace();
+                        if (e.getMessage().equals("socket closed")){
+                            return;
+                        }else {
+                            e.printStackTrace();
+                        }
                     }
                 }
                 try {
                     connection = new Connection(socket);
-                    online=true;
                     connection.writePacket(new InitPacket(chess,3-player.getId()));
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-                System.out.println("get Connection");
                 try {
                     serverS.close();
                 } catch (IOException e) {
@@ -57,6 +68,8 @@ public final class MainServer extends RemoteServer{
                 }
                 serverS = null;
                 startListen();
+                online=true;
+                Gui.info("游戏开始！");
             }
         }).start();
     }
