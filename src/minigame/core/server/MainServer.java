@@ -1,5 +1,6 @@
 package minigame.core.server;
 
+import javafx.scene.control.Label;
 import minigame.core.Chess;
 import minigame.core.Util;
 import minigame.core.net.Connection;
@@ -20,6 +21,7 @@ import java.net.UnknownHostException;
 public final class MainServer extends RemoteServer{
     public static int port;
     public static String ip;
+    public static Label invite=new Label();
     ServerSocket serverS;
     public MainServer(int size) {
         chess=new Chess(size);
@@ -41,6 +43,7 @@ public final class MainServer extends RemoteServer{
                     return;
                 }
                 Gui.info("创建服务器成功！\n邀请码："+Util.zipAddress(ip,port));
+                invite.setText(Util.zipAddress(ip,port));
                 System.out.println("socket start at " + serverS.getLocalPort());
                 while (socket == null) {
                     if (serverS==null) return;

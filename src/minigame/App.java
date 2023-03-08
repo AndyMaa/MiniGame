@@ -88,6 +88,24 @@ public final class App extends Application {
         box.setLayoutX(134);
         box.setLayoutY(14);
 
+        box.getChildren().add(new Label("您的邀请码:"));
+        box.getChildren().add(MainServer.invite);
+        map.put("invite", MainServer.invite);
+
+        /*
+        Label l1=new Label("您是");
+        Label l2=new Label();
+        if (Game.thePlayer.getId()==1){
+            l2.setText("先手");
+        }else if (Game.thePlayer.getId()==2){
+            l2.setText("后手");
+        }
+        box.getChildren().add(l1);
+        box.getChildren().add(l2);
+        map.put("label$t1", l1);
+        map.put("label$t2", l2);
+        */
+
         Button b1=new Button("提示");
         box.getChildren().add(b1);
         map.put("button$tip",b1);
@@ -146,7 +164,7 @@ public final class App extends Application {
             stage.setScene(gameScene);
         });
         getNodeById("button$create").setOnMouseClicked(event -> {
-            MainServer server=new MainServer(10);
+            MainServer server=new MainServer(Game.size);
             Game.setServer(server);
             FXChessUI.instance.setChess(server.getChess());
             Game.thePlayer.join(server);
@@ -176,7 +194,7 @@ public final class App extends Application {
                     int p1=pos[0]+1;
                     int p2=-pos[1]-1;
                     //真实坐标(左上角0,0)
-                    JOptionPane.showMessageDialog(null,"AI建议你下"+p1+", "+ p2);
+                    Gui.info("AI建议你下"+p1+", "+ p2);
                 }
             }
             else JOptionPane.showInputDialog("您的试用次数已结束!请充值");
@@ -187,7 +205,7 @@ public final class App extends Application {
             Game.exit();
         });  //返回主页面
         getNodeById("button$radio").setOnMouseClicked(event -> {
-            RadioButton radioButton= ((RadioButton) getNodeById("button$radio"));
+            RadioButton radioButton= (RadioButton) getNodeById("button$radio");
             if (radioButton.isSelected()){
                 MusicPlayer.playBackground();
             }else {

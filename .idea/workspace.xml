@@ -10,45 +10,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0bea6f4a-c1e1-467d-adfb-7b7970f54f27" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/minigame/ui/Gui.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/META-INF/MANIFEST.MF" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/MiniGame_jar/MiniGame.jar" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/MiniGame_jar/MiniGame.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MiniGame/META-INF/MANIFEST.MF" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MiniGame/META-INF/MANIFEST.MF" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MiniGame/res/fxml/test.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MiniGame/res/fxml/test.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" beforeDir="false" afterPath="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/minigame/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/minigame/App.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/minigame/MiniGame.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/minigame/core/Chess.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/minigame/core/Chess.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/minigame/core/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/minigame/core/Game.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/minigame/core/Util.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/minigame/core/Util.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/minigame/core/event/listeners/AIListener.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/minigame/core/event/listeners/ConfirmListener.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/minigame/core/event/listeners/CreateServerListener.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/minigame/core/event/listeners/ExitListener.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/minigame/core/event/listeners/JoinServerListener.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/minigame/core/event/listeners/RegretListener.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/minigame/core/event/listeners/SettingListener.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/minigame/core/event/listeners/StartListener.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/minigame/core/event/listeners/TipListener.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/minigame/core/players/AIPlayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/minigame/core/players/AIPlayer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/minigame/core/players/AbstractPlayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/minigame/core/players/AbstractPlayer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/minigame/core/players/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/minigame/core/players/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/minigame/core/server/GhostServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/minigame/core/server/GhostServer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/minigame/core/server/LocalServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/minigame/core/server/LocalServer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/minigame/core/server/MainServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/minigame/core/server/MainServer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/minigame/core/server/RemoteServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/minigame/core/server/RemoteServer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/minigame/test/Client.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/minigame/test/TestServer.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/minigame/ui/CanRepaint.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/minigame/ui/ChessUI.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/minigame/ui/FXChessUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/minigame/ui/FXChessUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/minigame/ui/GameFrame.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/minigame/ui/MusicPlayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/minigame/ui/MusicPlayer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/minigame/ui/buttons/More.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/minigame/ui/panes/WelcomePane.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/res/fxml/test.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/res/fxml/test.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -97,6 +61,8 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="codeWithMe.voiceChat.enabledByDefault" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/src" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.0" />
@@ -112,7 +78,7 @@
       <recent name="C:\Users\YKJ5\Documents\GitHub\MiniGame" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.JavaFX">
+  <component name="RunManager" selected="应用程序.JavaFX">
     <configuration name="Client" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="minigame.test.Client" />
       <module name="MiniGame" />
@@ -142,10 +108,10 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="Application.Client" />
-      <item itemvalue="Application.JavaFX" />
-      <item itemvalue="Application.MiniGame" />
-      <item itemvalue="Application.Server" />
+      <item itemvalue="应用程序.Client" />
+      <item itemvalue="应用程序.JavaFX" />
+      <item itemvalue="应用程序.MiniGame" />
+      <item itemvalue="应用程序.Server" />
     </list>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
