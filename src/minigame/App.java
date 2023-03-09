@@ -9,6 +9,11 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.Menu;
+import javafx.scene.control.MenuBar;
+import javafx.scene.control.MenuItem;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
@@ -19,12 +24,10 @@ import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import minigame.core.Game;
 import minigame.core.Util;
-import minigame.core.ai.AI;
 import minigame.core.ai.NoobAI;
 import minigame.core.ai.NormalAI;
 import minigame.core.players.AIPlayer;
 import minigame.core.players.LocalPlayer;
-import minigame.core.players.Player;
 import minigame.core.server.GhostServer;
 import minigame.core.server.LocalServer;
 import minigame.core.server.MainServer;
@@ -33,7 +36,9 @@ import minigame.ui.FXChessUI;
 import minigame.ui.Gui;
 import minigame.ui.MusicPlayer;
 
+import java.awt.*;
 import java.io.IOException;
+import java.net.URI;
 import java.net.URL;
 import java.util.HashMap;
 
@@ -59,6 +64,7 @@ public final class App extends Application {
     }
 
     public static Label l;//邀请码文本
+    private static Desktop desktop;
 
     /**
      * 状态标签，在游戏界面显示
@@ -255,6 +261,13 @@ public final class App extends Application {
             Gui.info("设置成功！");
         });
         getMenuById("menu$github").setOnAction(event -> {
+            try {
+                if (Desktop.isDesktopSupported())
+                    desktop=Desktop.getDesktop();
+                    desktop.browse(new URI("https://github.com/BobbyWch/MiniGame"));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         });
     }
     public void setMode(String mode){
