@@ -1,7 +1,6 @@
 package minigame;
 
 import javafx.application.Application;
-import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.event.EventTarget;
 import javafx.fxml.FXMLLoader;
@@ -10,15 +9,12 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.control.Button;
-import javafx.scene.control.Menu;
-import javafx.scene.control.MenuBar;
-import javafx.scene.control.MenuItem;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import minigame.core.Game;
@@ -34,13 +30,12 @@ import minigame.ui.FXChessUI;
 import minigame.ui.Gui;
 import minigame.ui.MusicPlayer;
 
-import javax.swing.*;
-import java.awt.*;
 import java.io.IOException;
 import java.net.URL;
 import java.util.HashMap;
 
 public final class App extends Application {
+    public static App instance;
     /**
      * 一个哈希表,相当于组件库,方便取用
      */
@@ -60,15 +55,30 @@ public final class App extends Application {
         return App.class.getClassLoader().getResource(path);
     }
 
+    /**
+     * 状态标签，在游戏界面显示
+     */
+    private static final Label state=new Label();
+    public static void setState(String s){
+        if (Game.thePlayer.getId()==0){
+            state.setText(s);
+        }else {
+            state.setText(s+"\n你是"+Game.IdMap[Game.thePlayer.getId()]);
+        }
+    }
+
     public final Scene rootScene;
     public final Scene gameScene;
     private Stage stage;
-    //private final ToggleGroup group=new ToggleGroup();
 
     public App() throws IOException {
+        instance=this;
+
         Parent root= FXMLLoader.load(getUrl("res/fxml/test.fxml"));
         //注册id
+        //在加载完所有fxml后调用
         regNodes(root);
+        state.setFont(Font.font(17));
         rootScene =new Scene(root);
         gameScene=new Scene(createGamePane());
         registerHandles();
@@ -94,24 +104,7 @@ public final class App extends Application {
         box.setSpacing(20);
         box.setLayoutX(134);
         box.setLayoutY(14);
-
-//        box.getChildren().add(new Label("您的邀请码:"));
-//        box.getChildren().add(MainServer.invite);
-//        map.put("invite", MainServer.invite);
-
-        /*
-        Label l1=new Label("您是");
-        Label l2=new Label();
-        if (Game.thePlayer.getId()==Server.turn){
-            l2.setText("先手");
-        }else if (Game.thePlayer.getId()==2){
-            l2.setText("后手");
-        }
-        box.getChildren().add(l1);
-        box.getChildren().add(l2);
-        map.put("label$t1", l1);
-        map.put("label$t2", l2);
-        */
+        box.getChildren().add(state);
 
         Button b1=new Button("提示");
         box.getChildren().add(b1);
@@ -157,10 +150,11 @@ public final class App extends Application {
             Game.setServer(server);
             FXChessUI.instance.setChess(server.getChess());
             Game.thePlayer.join(server);
-            AIPlayer ai=new AIPlayer(new NormalAI());
-            ai.join(server);
-            stage.setScene(gameScene);
-            System.out.println("ai mode");
+            new AIPlayer(new NormalAI()).join(server);
+            setMode("game");
+            if (Game.thePlayer.getId()==1){
+                state.setText("轮到您下了");
+            }
         });
         getNodeById("button$local").setOnMouseClicked(event -> {
             Server server=new LocalServer(Game.size);
@@ -168,14 +162,14 @@ public final class App extends Application {
             FXChessUI.instance.setChess(server.getChess());
             Game.thePlayer.join(server);
             new LocalPlayer().join(server);
-            stage.setScene(gameScene);
+            setMode("game");
         });
         getNodeById("button$create").setOnMouseClicked(event -> {
             MainServer server=new MainServer(Game.size);
             Game.setServer(server);
             FXChessUI.instance.setChess(server.getChess());
             Game.thePlayer.join(server);
-            stage.setScene(gameScene);
+            setMode("game");
         });
         getNodeById("button$join").setOnMouseClicked(event -> {
             String get= Gui.input("请输入邀请码：");
@@ -186,7 +180,7 @@ public final class App extends Application {
                 Game.setServer(ghost);
                 Game.thePlayer.join(ghost);
                 System.out.println("join");
-                stage.setScene(gameScene);
+                setMode("game");
             }catch (IllegalArgumentException e){
                 Gui.info("无效的邀请码！");
             }catch (IOException ioE){
@@ -204,11 +198,11 @@ public final class App extends Application {
                     Gui.info("AI建议你下"+p1+", "+ p2);
                 }
             }
-            else JOptionPane.showInputDialog("您的试用次数已结束!请充值");
+            else Gui.info("您的试用次数已结束");
             count+=1;
         });
         getNodeById("button$exit").setOnMouseClicked(event -> {
-            stage.setScene(rootScene);
+            setMode("welcome");
             Game.exit();
         });  //返回主页面
         getNodeById("button$radio").setOnMouseClicked(event -> {
@@ -238,31 +232,49 @@ public final class App extends Application {
                 return;
             }
             Game.size=size;
+            Gui.info("设置成功！");
         });
         getMenuById("menu$github").setOnAction(event -> {
         });
+    }
+    public void setMode(String mode){
+        switch (mode){
+            case "game":
+                stage.setScene(gameScene);
+                break;
+            case "welcome":
+                stage.setScene(rootScene);
+                state.setText(null);
+                break;
+            default:
+                System.out.println("未知的mode？");
+        }
+
     }
 
     /**
      * 添加阴影效果
      */
     private void look(){
-        DropShadow shadow = new DropShadow();
-        Button ai=(Button) getNodeById("button$ai");
-        Button create=(Button) getNodeById("button$create");
-        Button join=(Button) getNodeById("button$join");
-        Button local=(Button) getNodeById("button$local");
-        //当鼠标进入按钮时添加阴影特效
-        ai.addEventHandler(MouseEvent.MOUSE_ENTERED, new EffectListener(ai));
-        create.addEventHandler(MouseEvent.MOUSE_ENTERED, new EffectListener(create));
-        join.addEventHandler(MouseEvent.MOUSE_ENTERED, new EffectListener(join));
-        local.addEventHandler(MouseEvent.MOUSE_ENTERED, new EffectListener(local));
+        Node ai= getNodeById("button$ai");
+        Node create= getNodeById("button$create");
+        Node join=getNodeById("button$join");
+        Node local= getNodeById("button$local");
 
+        EffectListener l=new EffectListener(ai);
+        //当鼠标进入按钮时添加阴影特效
         //当鼠标离开按钮时移除阴影效果
-        ai.addEventHandler(MouseEvent.MOUSE_EXITED, new EffectListener(ai));
-        create.addEventHandler(MouseEvent.MOUSE_EXITED, new EffectListener(create));
-        join.addEventHandler(MouseEvent.MOUSE_EXITED, new EffectListener(join));
-        local.addEventHandler(MouseEvent.MOUSE_EXITED, new EffectListener(local));
+        ai.addEventHandler(MouseEvent.MOUSE_ENTERED, l);
+        ai.addEventHandler(MouseEvent.MOUSE_EXITED, l);
+        l=new EffectListener(create);
+        create.addEventHandler(MouseEvent.MOUSE_ENTERED, l);
+        create.addEventHandler(MouseEvent.MOUSE_EXITED, l);
+        l=new EffectListener(join);
+        join.addEventHandler(MouseEvent.MOUSE_ENTERED, l);
+        join.addEventHandler(MouseEvent.MOUSE_EXITED, l);
+        l=new EffectListener(local);
+        local.addEventHandler(MouseEvent.MOUSE_ENTERED, l);
+        local.addEventHandler(MouseEvent.MOUSE_EXITED, l);
     }
     private static final class EffectListener implements EventHandler<MouseEvent>{
         private static final DropShadow shadow=new DropShadow();

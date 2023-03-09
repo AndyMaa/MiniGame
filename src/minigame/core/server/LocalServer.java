@@ -1,12 +1,13 @@
 package minigame.core.server;
 
+import minigame.App;
 import minigame.core.Chess;
 import minigame.core.Game;
 import minigame.core.players.LocalPlayer;
 import minigame.core.players.Player;
+import minigame.ui.Gui;
 
-public final class LocalServer implements Server{
-    private final Chess chess;
+public final class LocalServer extends AbstractServer{
     private Player p1;
     private Player p2;
 
@@ -14,17 +15,9 @@ public final class LocalServer implements Server{
      * 是否两个都是本地玩家
      */
     private boolean playerOnly=false;
-    /**
-     * 轮到哪个玩家下，值为id
-     */
-    private int turn=1;
+
     public LocalServer(int size){
         chess=new Chess(size);
-    }
-
-    @Override
-    public Chess getChess() {
-        return chess;
     }
 
     @Override
@@ -45,12 +38,8 @@ public final class LocalServer implements Server{
         }
         if (playerOnly){
             Game.thePlayer=p1.getId()==1?p1:p2;
+            App.setState("");
         }
-    }
-
-    @Override
-    public boolean canStepAt(Player player,int x, int y) {
-        return player.getId()==turn&&chess.isValid(x,y,turn);
     }
 
     @Override
@@ -59,13 +48,25 @@ public final class LocalServer implements Server{
         if (++turn==3) turn=1;
         if (playerOnly){
             Game.thePlayer=player==p1?p2:p1;
+            App.setState("");
         }else {
             if (Game.thePlayer==player){
+                App.setState("请稍候");
                 if (player==p1){
                     p2.step(0,0);
                 }else {
                     p1.step(0,0);
                 }
+            }else {
+                App.setState("轮到您下了");
+            }
+        }
+        if (isFinished()){
+            int id=getWinner();
+            if (id==0){
+                Gui.info("游戏结束！平手");
+            }else {
+                Gui.info("游戏结束！"+Game.IdMap[id]+"获胜");
             }
         }
     }

@@ -1,6 +1,11 @@
 package minigame.core.server;
 
+import com.sun.javafx.tk.Toolkit;
+import javafx.application.Platform;
 import javafx.scene.control.Label;
+import javafx.scene.input.DataFormat;
+import javafx.util.Pair;
+import minigame.App;
 import minigame.core.Chess;
 import minigame.core.Util;
 import minigame.core.net.Connection;
@@ -42,7 +47,8 @@ public final class MainServer extends RemoteServer{
                     Gui.info("无法启动服务器");
                     return;
                 }
-                Gui.info("创建服务器成功！\n邀请码："+Util.zipAddress(ip,port));
+                Platform.runLater(()->Toolkit.getToolkit().getSystemClipboard().putContent(new Pair<>(DataFormat.PLAIN_TEXT,Util.zipAddress(ip,port))));
+                Gui.info("创建服务器成功！\n邀请码："+Util.zipAddress(ip,port)+"\n已复制到剪切板");
                 invite.setText(Util.zipAddress(ip,port));
                 System.out.println("socket start at " + serverS.getLocalPort());
                 while (socket == null) {
@@ -73,8 +79,10 @@ public final class MainServer extends RemoteServer{
                 startListen();
                 online=true;
                 Gui.info("游戏开始！");
+                checkState();
             }
         }).start();
+        App.setState("等待玩家加入...");
     }
 
     @Override

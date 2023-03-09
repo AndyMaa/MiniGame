@@ -1,7 +1,9 @@
 package minigame.ui;
 
 import javax.sound.sampled.*;
-import java.io.*;
+import java.io.BufferedInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 
 public class MusicPlayer {
     private static byte[] music=null;

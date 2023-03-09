@@ -11,16 +11,22 @@
   <component name="ChangeListManager">
     <list default="true" id="0bea6f4a-c1e1-467d-adfb-7b7970f54f27" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/MiniGame_jar/MiniGame.jar" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/MiniGame_jar/MiniGame.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" beforeDir="false" afterPath="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MiniGame/META-INF/MANIFEST.MF" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MiniGame/META-INF/MANIFEST.MF" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MiniGame/res/img/splash" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/minigame/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/minigame/App.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/minigame/core/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/minigame/core/Game.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/minigame/core/Util.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/minigame/core/Util.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/minigame/core/net/Connection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/minigame/core/net/Connection.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/minigame/core/players/AIPlayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/minigame/core/players/AIPlayer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/minigame/core/server/LocalServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/minigame/core/server/LocalServer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/minigame/core/server/MainServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/minigame/core/server/MainServer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/minigame/core/server/RemoteServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/minigame/core/server/RemoteServer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/minigame/ui/FXChessUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/minigame/ui/FXChessUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/res/fxml/test.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/res/fxml/test.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/minigame/ui/Gui.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/minigame/ui/Gui.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/minigame/ui/Listeners.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/minigame/ui/Listeners.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/minigame/ui/MusicPlayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/minigame/ui/MusicPlayer.java" afterDir="false" />
     </list>
-    <list id="722394fe-8781-4a14-a446-a3b2593b737a" name="Changes by YKJ6" comment="">
-      <change beforePath="$PROJECT_DIR$/src/minigame/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/minigame/App.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/minigame/ui/FXChessUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/minigame/ui/FXChessUI.java" afterDir="false" />
-    </list>
+    <list id="722394fe-8781-4a14-a446-a3b2593b737a" name="Changes by YKJ6" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -34,6 +40,7 @@
       <list>
         <option value="FxmlFile" />
         <option value="Interface" />
+        <option value="AnnotationType" />
         <option value="Class" />
       </list>
     </option>
@@ -48,34 +55,6 @@
       <filtered-out-file-type name="TAG" />
       <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
     </file-type-list>
-  </component>
-  <component name="LineStatusTrackerManager">
-    <file path="$PROJECT_DIR$/src/minigame/ui/FXChessUI.java">
-      <ranges>
-        <range start1="2" end1="6" start2="2" end2="2" changelist="0bea6f4a-c1e1-467d-adfb-7b7970f54f27" />
-        <range start1="8" end1="8" start2="4" end2="5" changelist="0bea6f4a-c1e1-467d-adfb-7b7970f54f27" />
-        <range start1="10" end1="10" start2="7" end2="8" changelist="722394fe-8781-4a14-a446-a3b2593b737a" />
-        <range start1="12" end1="12" start2="10" end2="11" changelist="722394fe-8781-4a14-a446-a3b2593b737a" />
-        <range start1="13" end1="14" start2="12" end2="13" changelist="0bea6f4a-c1e1-467d-adfb-7b7970f54f27" />
-        <range start1="16" end1="16" start2="15" end2="33" changelist="722394fe-8781-4a14-a446-a3b2593b737a" />
-        <range start1="77" end1="79" start2="94" end2="94" changelist="0bea6f4a-c1e1-467d-adfb-7b7970f54f27" />
-        <range start1="107" end1="111" start2="122" end2="124" changelist="722394fe-8781-4a14-a446-a3b2593b737a" />
-      </ranges>
-    </file>
-    <file path="$PROJECT_DIR$/src/minigame/App.java">
-      <ranges>
-        <range start1="3" end1="3" start2="3" end2="5" changelist="0bea6f4a-c1e1-467d-adfb-7b7970f54f27" />
-        <range start1="10" end1="10" start2="12" end2="16" changelist="0bea6f4a-c1e1-467d-adfb-7b7970f54f27" />
-        <range start1="31" end1="31" start2="37" end2="38" changelist="0bea6f4a-c1e1-467d-adfb-7b7970f54f27" />
-        <range start1="51" end1="52" start2="58" end2="59" changelist="0bea6f4a-c1e1-467d-adfb-7b7970f54f27" />
-        <range start1="90" end1="93" start2="97" end2="100" changelist="0bea6f4a-c1e1-467d-adfb-7b7970f54f27" />
-        <range start1="97" end1="98" start2="104" end2="105" changelist="722394fe-8781-4a14-a446-a3b2593b737a" />
-        <range start1="234" end1="234" start2="241" end2="243" changelist="0bea6f4a-c1e1-467d-adfb-7b7970f54f27" />
-        <range start1="246" end1="250" start2="255" end2="259" changelist="0bea6f4a-c1e1-467d-adfb-7b7970f54f27" />
-        <range start1="252" end1="256" start2="261" end2="265" changelist="0bea6f4a-c1e1-467d-adfb-7b7970f54f27" />
-        <range start1="257" end1="257" start2="266" end2="287" changelist="0bea6f4a-c1e1-467d-adfb-7b7970f54f27" />
-      </ranges>
-    </file>
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -192,6 +171,9 @@
       <workItem from="1678245048582" duration="3918000" />
       <workItem from="1678270329129" duration="2043000" />
       <workItem from="1678322985832" duration="1714000" />
+      <workItem from="1678335105735" duration="3074000" />
+      <workItem from="1678356240651" duration="259000" />
+      <workItem from="1678356516796" duration="2101000" />
     </task>
     <servers />
   </component>

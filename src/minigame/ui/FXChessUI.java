@@ -8,29 +8,14 @@ import javafx.scene.paint.Color;
 import minigame.App;
 import minigame.core.Chess;
 import minigame.core.Game;
+
 import java.io.IOException;
 
 public final class FXChessUI extends Canvas{
     public static FXChessUI instance;
     public static final int SIZE=500;//像素大小
-    private static final Image purpleImg;
-    private static final Image blueImg;
-
-    static {
-        Image i=null;
-        try {
-            i = new Image(App.getUrl("res/img/purple.png").openStream());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        purpleImg=i;
-        try {
-            i = new Image(App.getUrl("res/img/blue.png").openStream());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        blueImg=i;
-    }
+    private static Image purpleImg;
+    private static Image blueImg;
 
     private Chess chess;
     public FXChessUI(){
@@ -60,11 +45,21 @@ public final class FXChessUI extends Canvas{
             repaint();
         });
     }
+    private void reloadImage() {
+        try {
+            purpleImg = new Image(App.getUrl("res/img/purple.png").openStream(),blockSize-10,blockSize-10,false,true);
+            blueImg = new Image(App.getUrl("res/img/blue.png").openStream(),blockSize-10,blockSize-10,false,true);
+        } catch (IOException e) {
+            e.printStackTrace();
+            Gui.info("无法加载程序图像，请重新安装程序");
+        }
+    }
 
     public void setChess(Chess chess){
         this.chess=chess;
         blockSize= (int) (getWidth()/chess.size);
         chess.setUI(this);
+        reloadImage();
         repaint();
     }
     /**
@@ -101,6 +96,7 @@ public final class FXChessUI extends Canvas{
         int blockSize=this.blockSize;
         Chess chess=this.chess;
         g.setFill(Color.BLACK);
+        int SIZE=FXChessUI.SIZE;
         for (int i=0,a;i<chess.size+1;i++){
             //本质就是一个drawLine，对GraphicsContext无语了
             a=i*blockSize>=SIZE?SIZE-1:i*blockSize;
@@ -116,12 +112,13 @@ public final class FXChessUI extends Canvas{
         }
         //渲染棋子
         int current,j;
-        for (int i=0;i<chess.size;i++){
-            for (j=0;j<chess.size;j++){
+        SIZE=chess.size;
+        for (int i=0;i<SIZE;i++){
+            for (j=0;j<SIZE;j++){
                 current=data[i][j];
                 if (current!=0){
-                    if (current==1) g.drawImage(purpleImg, i*blockSize+5,j*blockSize+5,blockSize-10,blockSize-10);
-                    else if (current==2) g.drawImage(blueImg, i*blockSize+5,j*blockSize+5,blockSize-10,blockSize-10);
+                    if (current==1) g.drawImage(purpleImg, i*blockSize+5,j*blockSize+5);
+                    else if (current==2) g.drawImage(blueImg, i*blockSize+5,j*blockSize+5);
                 }
             }
         }

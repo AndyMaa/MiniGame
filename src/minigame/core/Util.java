@@ -1,7 +1,5 @@
 package minigame.core;
 
-import java.util.Arrays;
-
 public class Util {
     private final static char[] charMap={'a','b','c','d','e','f','g','h','i','j','k','m','n','o','p',
             'q','r','s','t','u','v','w','x','y','z','A','B','C','D','E','F','G','H','I','J','K','L',
@@ -32,14 +30,12 @@ public class Util {
                     rawOutPut[i<2?0:3]+=node/size;
                 }
             }
-
             rawOutPut[i<2?i+1:i+2]= (char) (node%size);
         }
         //序列化端口
         rawOutPut[6]= (char) (port/size/size);
         rawOutPut[7]= (char) ((port/size)%size);
         rawOutPut[8]= (char) (port%size);
-        System.out.println(Arrays.toString(rawOutPut));
         for (int i=0;i<rawOutPut.length;i++){
             rawOutPut[i]=charMap[rawOutPut[i]];
         }
@@ -89,5 +85,13 @@ public class Util {
         }catch (Exception e){
             throw new IllegalArgumentException();
         }
+    }
+
+    /**
+     * https://blog.csdn.net/xingbaozhen1210/article/details/81078101
+     * @param url
+     */
+    public static void browse(String url){
+
     }
 }

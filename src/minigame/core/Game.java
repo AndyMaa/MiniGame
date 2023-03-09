@@ -2,12 +2,14 @@ package minigame.core;
 
 import minigame.core.players.LocalPlayer;
 import minigame.core.players.Player;
-import minigame.core.server.LocalServer;
 import minigame.core.server.RemoteServer;
 import minigame.core.server.Server;
-import minigame.ui.FXChessUI;
 
 public final class Game {
+    /**
+     * id与棋子颜色的关系
+     */
+    public static final String[] IdMap={null,"紫棋","蓝棋"};
     /**
      * 本地玩家
      */

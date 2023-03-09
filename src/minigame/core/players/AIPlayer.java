@@ -3,8 +3,6 @@ package minigame.core.players;
 import minigame.core.ai.AI;
 import minigame.ui.Gui;
 
-import javax.swing.*;
-
 /**
  * 电脑玩家
  */

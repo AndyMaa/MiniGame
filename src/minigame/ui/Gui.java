@@ -4,8 +4,6 @@ import com.sun.javafx.tk.Toolkit;
 import javafx.application.Platform;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextInputDialog;
-import minigame.core.Util;
-import minigame.core.server.MainServer;
 
 public class Gui {
     /**
