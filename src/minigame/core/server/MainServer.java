@@ -4,6 +4,7 @@ import com.sun.javafx.tk.Toolkit;
 import javafx.application.Platform;
 import javafx.scene.control.Label;
 import javafx.scene.input.DataFormat;
+import javafx.scene.text.Font;
 import javafx.util.Pair;
 import minigame.App;
 import minigame.core.Chess;
@@ -50,6 +51,7 @@ public final class MainServer extends RemoteServer{
                 Platform.runLater(()->Toolkit.getToolkit().getSystemClipboard().putContent(new Pair<>(DataFormat.PLAIN_TEXT,Util.zipAddress(ip,port))));
                 Gui.info("创建服务器成功！\n邀请码："+Util.zipAddress(ip,port)+"\n已复制到剪切板");
                 invite.setText(Util.zipAddress(ip,port));
+                invite.setFont(Font.font(17));
                 System.out.println("socket start at " + serverS.getLocalPort());
                 while (socket == null) {
                     if (serverS==null) return;

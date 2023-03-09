@@ -63,7 +63,7 @@ public final class App extends Application {
         if (Game.thePlayer.getId()==0){
             state.setText(s);
         }else {
-            state.setText(s+"\n你是"+Game.IdMap[Game.thePlayer.getId()]);
+            state.setText(s+"\n你是"+Game.IdMap[Game.thePlayer.getId()]); //判断棋子颜色
         }
     }
 
@@ -113,6 +113,11 @@ public final class App extends Application {
         Button b2=new Button("退出");
         box.getChildren().add(b2);
         map.put("button$exit",b2);
+
+        Label l=new Label("您的邀请码:");
+        l.setFont(Font.font(17));
+        box.getChildren().add(l);
+        box.getChildren().add(MainServer.invite);
 
         vBox.getChildren().add(box);
         vBox.getChildren().add(new FXChessUI());
