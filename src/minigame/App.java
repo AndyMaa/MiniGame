@@ -58,6 +58,8 @@ public final class App extends Application {
         return App.class.getClassLoader().getResource(path);
     }
 
+    public static Label l;//邀请码文本
+
     /**
      * 状态标签，在游戏界面显示
      */
@@ -117,7 +119,7 @@ public final class App extends Application {
         box.getChildren().add(b2);
         map.put("button$exit",b2);
 
-        Label l=new Label("您的邀请码:");
+        l=new Label("");
         l.setFont(Font.font(17));
         box.getChildren().add(l);
         box.getChildren().add(MainServer.invite);
@@ -187,6 +189,7 @@ public final class App extends Application {
             FXChessUI.instance.setChess(server.getChess());
             Game.thePlayer.join(server);
             setMode("game");
+            l.setText("您的邀请码:");
         });
         getNodeById("button$join").setOnMouseClicked(event -> {
             String get= Gui.input("请输入邀请码：");
