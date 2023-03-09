@@ -1,19 +1,36 @@
 package minigame.ui;
 
-import com.sun.javafx.geom.BaseBounds;
-import com.sun.javafx.geom.transform.BaseTransform;
-import javafx.event.EventHandler;
-import javafx.event.EventType;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
+import minigame.App;
 import minigame.core.Chess;
 import minigame.core.Game;
+import java.io.IOException;
 
-public class FXChessUI extends Canvas{
+public final class FXChessUI extends Canvas{
     public static FXChessUI instance;
     public static final int SIZE=500;//像素大小
+    private static final Image purpleImg;
+    private static final Image blueImg;
+
+    static {
+        Image i=null;
+        try {
+            i = new Image(App.getUrl("res/img/purple.png").openStream());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        purpleImg=i;
+        try {
+            i = new Image(App.getUrl("res/img/blue.png").openStream());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        blueImg=i;
+    }
 
     private Chess chess;
     public FXChessUI(){
@@ -75,8 +92,6 @@ public class FXChessUI extends Canvas{
 
     private static final Color highLight= Color.rgb(54, 227, 241, 0.4);
     private static final Color click=Color.rgb(15, 21, 21, 0.7);
-    private static final Color purple=Color.rgb(133, 56, 220);
-    private static final Color blue=Color.rgb(41, 180, 241);
     private static final Color lastStep=Color.rgb(238, 226, 46);
 
     public void repaint(){
@@ -105,10 +120,8 @@ public class FXChessUI extends Canvas{
             for (j=0;j<chess.size;j++){
                 current=data[i][j];
                 if (current!=0){
-                    if (current==1) g.setFill(purple);
-                    else if (current==2) g.setFill(blue);
-                    g.fillOval(i*blockSize+5,j*blockSize+5,blockSize-10,blockSize-10);
-                    g.setFill(Color.BLACK);
+                    if (current==1) g.drawImage(purpleImg, i*blockSize+5,j*blockSize+5,blockSize-10,blockSize-10);
+                    else if (current==2) g.drawImage(blueImg, i*blockSize+5,j*blockSize+5,blockSize-10,blockSize-10);
                 }
             }
         }

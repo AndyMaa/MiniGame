@@ -1,6 +1,8 @@
 package minigame;
 
 import javafx.application.Application;
+import javafx.application.Platform;
+import javafx.event.EventHandler;
 import javafx.event.EventTarget;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
@@ -8,6 +10,10 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.Menu;
+import javafx.scene.control.MenuBar;
+import javafx.scene.control.MenuItem;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
@@ -29,6 +35,7 @@ import minigame.ui.Gui;
 import minigame.ui.MusicPlayer;
 
 import javax.swing.*;
+import java.awt.*;
 import java.io.IOException;
 import java.net.URL;
 import java.util.HashMap;
@@ -49,7 +56,7 @@ public final class App extends Application {
     public static MenuItem getMenuById(String id){
         return (MenuItem) map.get(id);
     }
-    private static URL getUrl(String path){
+    public static URL getUrl(String path){
         return App.class.getClassLoader().getResource(path);
     }
 
@@ -88,14 +95,14 @@ public final class App extends Application {
         box.setLayoutX(134);
         box.setLayoutY(14);
 
-        box.getChildren().add(new Label("您的邀请码:"));
-        box.getChildren().add(MainServer.invite);
-        map.put("invite", MainServer.invite);
+//        box.getChildren().add(new Label("您的邀请码:"));
+//        box.getChildren().add(MainServer.invite);
+//        map.put("invite", MainServer.invite);
 
         /*
         Label l1=new Label("您是");
         Label l2=new Label();
-        if (Game.thePlayer.getId()==1){
+        if (Game.thePlayer.getId()==Server.turn){
             l2.setText("先手");
         }else if (Game.thePlayer.getId()==2){
             l2.setText("后手");
@@ -232,6 +239,8 @@ public final class App extends Application {
             }
             Game.size=size;
         });
+        getMenuById("menu$github").setOnAction(event -> {
+        });
     }
 
     /**
@@ -244,16 +253,37 @@ public final class App extends Application {
         Button join=(Button) getNodeById("button$join");
         Button local=(Button) getNodeById("button$local");
         //当鼠标进入按钮时添加阴影特效
-        ai.addEventHandler(MouseEvent.MOUSE_ENTERED, (MouseEvent e) -> ai.setEffect(shadow));
-        create.addEventHandler(MouseEvent.MOUSE_ENTERED, (MouseEvent e) -> create.setEffect(shadow));
-        join.addEventHandler(MouseEvent.MOUSE_ENTERED, (MouseEvent e) -> join.setEffect(shadow));
-        local.addEventHandler(MouseEvent.MOUSE_ENTERED, (MouseEvent e) -> local.setEffect(shadow));
+        ai.addEventHandler(MouseEvent.MOUSE_ENTERED, new EffectListener(ai));
+        create.addEventHandler(MouseEvent.MOUSE_ENTERED, new EffectListener(create));
+        join.addEventHandler(MouseEvent.MOUSE_ENTERED, new EffectListener(join));
+        local.addEventHandler(MouseEvent.MOUSE_ENTERED, new EffectListener(local));
 
         //当鼠标离开按钮时移除阴影效果
-        ai.addEventHandler(MouseEvent.MOUSE_EXITED, (MouseEvent e) -> ai.setEffect(null));
-        create.addEventHandler(MouseEvent.MOUSE_EXITED, (MouseEvent e) -> create.setEffect(null));
-        join.addEventHandler(MouseEvent.MOUSE_EXITED, (MouseEvent e) -> join.setEffect(null));
-        local.addEventHandler(MouseEvent.MOUSE_EXITED, (MouseEvent e) -> local.setEffect(null));
+        ai.addEventHandler(MouseEvent.MOUSE_EXITED, new EffectListener(ai));
+        create.addEventHandler(MouseEvent.MOUSE_EXITED, new EffectListener(create));
+        join.addEventHandler(MouseEvent.MOUSE_EXITED, new EffectListener(join));
+        local.addEventHandler(MouseEvent.MOUSE_EXITED, new EffectListener(local));
+    }
+    private static final class EffectListener implements EventHandler<MouseEvent>{
+        private static final DropShadow shadow=new DropShadow();
+        private final Node node;
+
+        public EffectListener(Node node) {
+            this.node = node;
+        }
+
+        @Override
+        public void handle(MouseEvent event) {
+            if (event.getEventType()==MouseEvent.MOUSE_ENTERED){
+                node.setEffect(shadow);
+                node.setScaleX(1.3);
+                node.setScaleY(1.3);
+            }else if (event.getEventType()==MouseEvent.MOUSE_EXITED){
+                node.setEffect(null);
+                node.setScaleX(1);
+                node.setScaleY(1);
+            }
+        }
     }
     public static void main(String[] args) {
         launch(args);
