@@ -19,9 +19,12 @@ import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import minigame.core.Game;
 import minigame.core.Util;
+import minigame.core.ai.AI;
+import minigame.core.ai.NoobAI;
 import minigame.core.ai.NormalAI;
 import minigame.core.players.AIPlayer;
 import minigame.core.players.LocalPlayer;
+import minigame.core.players.Player;
 import minigame.core.server.GhostServer;
 import minigame.core.server.LocalServer;
 import minigame.core.server.MainServer;
@@ -152,10 +155,19 @@ public final class App extends Application {
     private void registerHandles(){
         getNodeById("button$ai").setOnMouseClicked(event -> {
             Server server=new LocalServer(Game.size);
+            String get=Gui.input("简单or困难? (选择前者输入1，选择后者输入2)");
+            if(get.equals("1"))
+                new AIPlayer(new NoobAI()).join(server);
+            else if (get.equals("2"))
+                new AIPlayer(new NormalAI()).join(server);
+            else {
+                Gui.info("请输入1或2!");
+                server=null;
+            }
             Game.setServer(server);
-            FXChessUI.instance.setChess(server.getChess());
+            FXChessUI.instance.setChess(server.getChess());  //这里可能会报空指针，不用管
             Game.thePlayer.join(server);
-            new AIPlayer(new NormalAI()).join(server);
+
             setMode("game");
             if (Game.thePlayer.getId()==1){
                 state.setText("轮到您下了");
